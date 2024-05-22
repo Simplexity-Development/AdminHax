@@ -1,0 +1,13 @@
+speed:
+  walk:
+    max: 10.0
+    min: -10.0
+  fly:
+    max: 10.0
+    min: -10.0
+flight:
+  persistent:
+    session: true
+    world-change: true
+    respawn: true
+    gamemode: true

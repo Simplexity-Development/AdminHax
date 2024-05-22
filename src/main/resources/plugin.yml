@@ -1,0 +1,42 @@
+name: AdminHax
+version: '${project.version}'
+main: simplexity.adminhax.AdminHax
+api-version: '1.19'
+commands:
+  flyspeed:
+    permission: adminhax.commands.speed.fly
+    description: allows you to change your walk speed
+    usage: /<command> [set|get|reset] <speed>
+    aliases: [fs]
+  walkspeed:
+    permission: adminhax.commands.speed.walk
+    description: allows you to change your walk speed
+    usage: /<command> [set|get|reset] <speed>
+    aliases: [ ws ]
+  fly:
+    permission: adminhax.commands.fly
+    description: allows you to fly
+    usage: /<command>
+  feed:
+    permission: adminhax.commands.feed
+    description: allows you to feed
+    usage: /<command>
+permissions:
+  adminhax.commands.speed.walk:
+    default: op
+    description: allows you to change your walk speed
+  adminhax.commands.other.speed.walk:
+    default: op
+    description: allows you to change your walk speed
+  adminhax.commands.speed.fly:
+    default: op
+    description: allows you to change your walk speed
+  adminhax.commands.other.speed.fly:
+    default: op
+    description: allows you to change your walk speed
+  adminhax.commands.fly:
+    default: op
+    description: allows you to fly
+  adminhax.commands.feed:
+    default: op
+    description: allows you to feed your player to full

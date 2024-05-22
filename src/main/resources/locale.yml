@@ -1,0 +1,35 @@
+fly:
+  own: "Your fly has been <value>"
+  other: "<target>'s fly has been <value>"
+  by-other: "<green>Your fly has been <value> by <initiator></green>"
+speed:
+  set:
+    own: "<green>Your <speedtype> has been set to <value></green>"
+    other: "<green>You set <target>'s <speedtype> to <value></green>"
+    by-other: "<green>Your <speedtype> has been set to <value> by <initiator></green>"
+  reset:
+    own: "<green>Your <speedtype> has been reset</green>"
+    other: "<green><target>'s <speedtype> has been reset</green>"
+    by-other: "<green>Your <speedtype> has been reset by <initiator></green>"
+  get:
+    own: "<grey>Your <speedtype> is currently set to <value></grey>"
+    other: "<grey><target>'s current <speedtype> is <value></grey>"
+feed:
+  self: "<green>You have been fed</green>"
+  other: "<green>You have fed <target></green>"
+insertion:
+  prefix : "<green>[<yellow>SF</yellow>]</green> "
+  enabled : "<green>enabled</green>"
+  disabled : "<red>disabled</red>"
+  flyspeed : "<yellow>flyspeed</yellow>"
+  walkspeed : "<yellow>walkspeed</yellow>"
+error:
+  invalid-player : "<red>That is not a valid player. Please check your spelling and try again</red>"
+  no-permission : "<red>You do not have permission to run this command</red>"
+  must-be-player : "<red>You must be a player to run this command</red>"
+  not-enough-arguments : "<red>You did not provide enough arguments. Please check your syntax and try again</red>"
+  invalid-number : "<red>Sorry, you did not enter a valid flyspeed, please try again</red>"
+  not-in-range : "<red>Sorry, you must provide a number between <min> and <max></red>"
+  invalid-command : "<red>Sorry, that subcommand is invalid. Please check your syntax and try again</red>"
+plugin-messages:
+  config-reloaded: "<gold>Config Reloaded</gold>"
