@@ -22,6 +22,8 @@ public class LocaleHandler {
     private String flySetOwn, flySetOther, flySetByOther;
     //Feed messages
     private String feedSelf, feedOther;
+    //Heal messages
+    private String healSelf, healOther;
     //Errors
     private String invalidPlayer, noPermission, mustBePlayer, notEnoughArguments, invalidNumber, notInRange,
             invalidCommand, configReloaded;
@@ -67,6 +69,8 @@ public class LocaleHandler {
         speedResetByOther = localeConfig.getString("speed.reset.by-other");
         feedSelf = localeConfig.getString("feed.self");
         feedOther = localeConfig.getString("feed.other");
+        healSelf = localeConfig.getString("heal.self");
+        healOther = localeConfig.getString("heal.other");
         invalidPlayer = localeConfig.getString("error.invalid-player");
         noPermission = localeConfig.getString("error.no-permission");
         mustBePlayer = localeConfig.getString("error.must-be-player");
@@ -179,5 +183,13 @@ public class LocaleHandler {
 
     public String getFeedOther() {
         return feedOther;
+    }
+
+    public String getHealSelf() {
+        return healSelf;
+    }
+
+    public String getHealOther() {
+        return healOther;
     }
 }

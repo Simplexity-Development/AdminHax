@@ -21,6 +21,10 @@ commands:
     permission: adminhax.commands.feed
     description: allows you to feed
     usage: /<command>
+  heal:
+    permission: adminhax.commands.heal
+    description: allows you to heal
+    usage: /<command>
 permissions:
   adminhax.commands.speed.walk:
     default: op
@@ -37,6 +41,18 @@ permissions:
   adminhax.commands.fly:
     default: op
     description: allows you to fly
+  adminhax.commands.other.fly:
+    default: op
+    description: allows you to fly
   adminhax.commands.feed:
     default: op
     description: allows you to feed your player to full
+  adminhax.commands.other.feed:
+    default: op
+    description: allows you to feed others to full
+  adminhax.commands.heal:
+    default: op
+    description: allows you to heal to max health
+  adminhax.commands.other.heal:
+    default: op
+    description: allows you to heal others to max health

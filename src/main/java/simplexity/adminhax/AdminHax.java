@@ -7,6 +7,7 @@ import simplexity.adminhax.commands.Feed;
 import simplexity.adminhax.commands.Fly;
 import simplexity.adminhax.commands.AbstractSpeedCommand;
 import simplexity.adminhax.commands.FlySpeed;
+import simplexity.adminhax.commands.Heal;
 import simplexity.adminhax.commands.WalkSpeed;
 import simplexity.adminhax.config.ConfigHandler;
 import simplexity.adminhax.config.LocaleHandler;
@@ -36,6 +37,7 @@ public final class AdminHax extends JavaPlugin {
         this.getCommand("walkspeed").setExecutor(new WalkSpeed(new Permission("adminhax.commands.speed.walk"), new Permission("adminhax.commands.other.speed.walk"), false));
         this.getCommand("fly").setExecutor(new Fly());
         this.getCommand("feed").setExecutor(new Feed());
+        this.getCommand("heal").setExecutor(new Heal());
         this.getServer().getPluginManager().registerEvents(new FlyListeners(), this);
         // Plugin startup logic
 
