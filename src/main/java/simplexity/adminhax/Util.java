@@ -53,7 +53,7 @@ public class Util {
                 Placeholder.component("initiator", parsedName)));
     }
 
-    public static Player checkAdminPerms(Permission runForOtherPerm, CommandSender sender, String[] args) {
+    public static Player getPlayerFromArgs(Permission runForOtherPerm, CommandSender sender, String[] args) {
         if (!sender.hasPermission(runForOtherPerm)) {
             sendUserMessage(sender, LocaleHandler.getInstance().getInvalidCommand());
             return null;

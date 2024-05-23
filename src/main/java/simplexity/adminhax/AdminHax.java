@@ -33,11 +33,11 @@ public final class AdminHax extends JavaPlugin {
         LocaleHandler.getInstance().loadLocale();
         this.saveDefaultConfig();
         ConfigHandler.getInstance().reloadConfigValues();
-        this.getCommand("flyspeed").setExecutor(new FlySpeed(new Permission("adminhax.commands.speed.fly"), new Permission("adminhax.commands.other.speed.fly"), true));
-        this.getCommand("walkspeed").setExecutor(new WalkSpeed(new Permission("adminhax.commands.speed.walk"), new Permission("adminhax.commands.other.speed.walk"), false));
+        this.getCommand("flyspeed").setExecutor(new FlySpeed(Util.FLY_SPEED_PERMISSION, Util.FLY_SPEED_OTHER_PERMISSION, 0.1f));
+        this.getCommand("walkspeed").setExecutor(new WalkSpeed(Util.WALK_SPEED_PERMISSION, Util.WALK_SPEED_OTHER_PERMISSION, 0.2f));
         this.getCommand("fly").setExecutor(new Fly());
-        this.getCommand("feed").setExecutor(new Feed());
-        this.getCommand("heal").setExecutor(new Heal());
+        this.getCommand("feed").setExecutor(new Feed(Util.FEED_PERMISSION, Util.FEED_OTHER_PERMISSION));
+        this.getCommand("heal").setExecutor(new Heal(Util.HEAL_PERMISSION, Util.HEAL_OTHER_PERMISSION));
         this.getServer().getPluginManager().registerEvents(new FlyListeners(), this);
         // Plugin startup logic
 

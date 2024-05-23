@@ -1,39 +1,33 @@
 package simplexity.adminhax.commands;
 
 import org.bukkit.attribute.Attribute;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.permissions.Permission;
 import simplexity.adminhax.Util;
 import simplexity.adminhax.config.LocaleHandler;
 
-public class Heal implements CommandExecutor {
+public class Heal extends AbstractHaxCommand {
+
+    public Heal(Permission basicPermission, Permission adminPermission) {
+        super(basicPermission, adminPermission);
+    }
+
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (args.length > 0) {
-            Player player = Util.checkAdminPerms(Util.FEED_OTHER_PERMISSION, sender, args);
-            if (player == null) {
-                Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidPlayer());
-                return false;
-            }
-            double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-            player.setHealth(maxHealth);
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getHealOther(), null, player);
-            Util.sendUserMessage(player, LocaleHandler.getInstance().getHealSelf());
-            //todo add a cooldown
-            return true;
-        }
-        if (Util.checkIfPlayerAndPerms(sender, Util.FEED_PERMISSION)){
-            Player player = (Player) sender;
-            double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-            player.setHealth(maxHealth);
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getHealSelf());
-            //todo add a cooldown
-            return true;
-        }
-        return false;
+    public void runLogic(Player player, CommandSender sender){
+        double health = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+        player.setHealth(health);
+        super.runLogic(player, sender);
+    }
+
+    @Override
+    public void sendSelfMessage(Player player) {
+        Util.sendUserMessage(player, LocaleHandler.getInstance().getHealSelf());
+    }
+
+    @Override
+    public void sendOtherMessage(CommandSender sender, Player player) {
+        Util.sendUserMessage(sender, LocaleHandler.getInstance().getHealOther(), null, player);
     }
 
 }
