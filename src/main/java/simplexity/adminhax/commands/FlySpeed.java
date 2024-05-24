@@ -15,14 +15,14 @@ public class FlySpeed extends AbstractSpeedCommand{
     @Override
     public void setSpeedLogic(CommandSender sender, Player player, String[] args, Float speed) {
         super.setSpeedLogic(sender, player, args, speed);
-        speed /= 10f;
-        if (!isInRange(speed, ConfigHandler.getInstance().getMinFlySpeed(), ConfigHandler.getInstance().getMaxFlySpeed())) {
+        if (outOfRange(speed, ConfigHandler.getInstance().getMinFlySpeed(), ConfigHandler.getInstance().getMaxFlySpeed())) {
             sendOutOfRangeMessage(sender);
             return;
         }
+        speed /= 10f;
         player.setFlySpeed(speed);
         String speedType = LocaleHandler.getInstance().getFlyspeed();
-        String speedString = String.valueOf(speed);
+        String speedString = String.valueOf(speed * 10f);
         if (isRunningOnAnotherPlayer()) {
             sendOtherMessage(speedType, sender, player, speedString, setByOther, setOther);
             return;
@@ -32,6 +32,7 @@ public class FlySpeed extends AbstractSpeedCommand{
 
     @Override
     public void resetSpeedLogic(CommandSender sender, Player player, String[] args) {
+        super.resetSpeedLogic(sender, player, args);
         player.setFlySpeed(defaultSpeed);
         String speedType = LocaleHandler.getInstance().getFlyspeed();
         String speedString = String.valueOf(defaultSpeed * 10f);
@@ -45,10 +46,11 @@ public class FlySpeed extends AbstractSpeedCommand{
 
     @Override
     public void getSpeedLogic(CommandSender sender, Player player, String[] args) {
+        super.getSpeedLogic(sender, player, args);
         String speedType = LocaleHandler.getInstance().getFlyspeed();
         String speedString = String.valueOf(player.getFlySpeed() * 10f);
         if (isRunningOnAnotherPlayer()) {
-            sendOtherMessage(speedType, sender, player, speedString, getOther, null);
+            sendOtherMessage(speedType, sender, player, speedString, null, getOther);
             return;
         }
         sendOwnMessage(speedType, player, speedString, getOwn);

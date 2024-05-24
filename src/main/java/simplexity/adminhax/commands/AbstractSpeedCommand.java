@@ -63,11 +63,6 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
         return true;
     }
 
-    @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        return null;
-    }
-
     public void setSpeedLogic(CommandSender sender, Player player, String[] args, Float speed) {
         if (speed == null) {
             Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidNumber());
@@ -115,13 +110,6 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
         setSenderHasBasicPermission(sender);
     }
 
-    private Player getPlayerFromArgs(String[] args) {
-        if (!senderHasAdminPermission) {
-            return null;
-        }
-        return AdminHax.getInstance().getServer().getPlayer(args[0]);
-    }
-
     private Float getFloatFromArgs(String[] args) {
         float parsedFloat;
         if (args.length < 2) {
@@ -146,9 +134,6 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
     }
 
     private Player checkIfSenderIsAPlayer(CommandSender sender) {
-        if (!sender.hasPermission(basicPermission)) {
-            return null;
-        }
         if (!(sender instanceof Player playerSender)) {
             return null;
         }
@@ -157,28 +142,22 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
 
     private Player validatePlayer(CommandSender sender, String[] args) {
         Player player = null;
-        if (args.length < 2) {
+        if (args.length < 2 || !senderHasAdminPermission) {
             runningOnAnotherPlayer = false;
         } else {
-            player = getPlayerFromArgs(args);
-            if (player == null) {
-                runningOnAnotherPlayer = false;
-            } else {
-                runningOnAnotherPlayer = true;
-            }
+            player = AdminHax.getInstance().getServer().getPlayer(args[1]);
         }
         if (player == null) {
             player = checkIfSenderIsAPlayer(sender);
+        } else {
+            runningOnAnotherPlayer = true;
         }
         return player;
     }
 
-    public boolean isRunningOnAnotherPlayer() {
-        return runningOnAnotherPlayer;
-    }
 
-    public boolean isInRange(float speed, float min, float max) {
-        return speed >= min && speed <= max;
+    public boolean outOfRange(float speed, float min, float max) {
+        return !(speed >= min) || !(speed <= max);
     }
 
     public void sendOtherMessage(String speedType, CommandSender sender, Player player, String speed, String byOtherMessage, String setOtherMessage) {
@@ -203,5 +182,19 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
                 Placeholder.parsed("min", String.valueOf(ConfigHandler.getInstance().getMinFlySpeed())),
                 Placeholder.parsed("max", String.valueOf(ConfigHandler.getInstance().getMaxFlySpeed())));
     }
+
+    public boolean isRunningOnAnotherPlayer() {
+        return runningOnAnotherPlayer;
+    }
+
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+        if (!sender.hasPermission(basicPermission)) return List.of();
+        if (args.length < 2 ) {
+            return VALID_ARGS.stream().toList();
+        }
+        return null;
+    }
+
 }
 
