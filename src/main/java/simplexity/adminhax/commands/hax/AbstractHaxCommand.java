@@ -1,4 +1,4 @@
-package simplexity.adminhax.commands;
+package simplexity.adminhax.commands.hax;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,20 +27,20 @@ public abstract class AbstractHaxCommand implements CommandExecutor {
                 Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidPlayer());
                 return false;
             }
-            runLogic(player, sender);
+            runLogic(player, sender, args);
             //todo add a cooldown
             return true;
         }
         if (Util.checkIfPlayerAndPerms(sender, basicPermission)) {
             Player playerSender = (Player) sender;
-            runLogic(playerSender, sender);
+            runLogic(playerSender, sender, args);
             //todo add a cooldown
             return true;
         }
         return false;
     }
 
-    public void runLogic(Player player, CommandSender sender) {
+    public void runLogic(Player player, CommandSender sender, String[] args) {
         sendSelfMessage(player);
         if (!(sender instanceof Player)) return;
         sendOtherMessage(sender, player);

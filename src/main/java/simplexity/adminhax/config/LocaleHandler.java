@@ -14,7 +14,7 @@ public class LocaleHandler {
     private final File localeFile = new File(AdminHax.getInstance().getDataFolder(), fileName);
     private final FileConfiguration localeConfig = new YamlConfiguration();
     //Insertion messages
-    private String prefix, enabled, disabled, flyspeed, walkspeed;
+    private String prefix, enabled, disabled, flyspeed, walkspeed, item;
     //Speed messages
     private String speedGetOther, speedGetOwn, speedSetOwn, speedResetOwn, speedSetOther, speedResetOther,
             speedSetByOther, speedResetByOther;
@@ -24,9 +24,11 @@ public class LocaleHandler {
     private String feedSelf, feedOther;
     //Heal messages
     private String healSelf, healOther;
+    //Repair messages
+    private String repairSelf, repairOther, repairHeader;
     //Errors
     private String invalidPlayer, noPermission, mustBePlayer, notEnoughArguments, invalidNumber, notInRange,
-            invalidCommand, configReloaded;
+            invalidCommand, configReloaded, cannotBeRepaired;
 
     private LocaleHandler() {
         if (!localeFile.exists()) {
@@ -56,6 +58,7 @@ public class LocaleHandler {
         disabled = localeConfig.getString("insertion.disabled");
         flyspeed = localeConfig.getString("insertion.flyspeed");
         walkspeed = localeConfig.getString("insertion.walkspeed");
+        item = localeConfig.getString("insertion.item");
         flySetOwn = localeConfig.getString("fly.own");
         flySetOther = localeConfig.getString("fly.other");
         flySetByOther = localeConfig.getString("fly.by-other");
@@ -71,6 +74,9 @@ public class LocaleHandler {
         feedOther = localeConfig.getString("feed.other");
         healSelf = localeConfig.getString("heal.self");
         healOther = localeConfig.getString("heal.other");
+        repairSelf = localeConfig.getString("repair.self");
+        repairOther = localeConfig.getString("repair.other");
+        repairHeader = localeConfig.getString("repair.header");
         invalidPlayer = localeConfig.getString("error.invalid-player");
         noPermission = localeConfig.getString("error.no-permission");
         mustBePlayer = localeConfig.getString("error.must-be-player");
@@ -78,6 +84,7 @@ public class LocaleHandler {
         invalidNumber = localeConfig.getString("error.invalid-number");
         notInRange = localeConfig.getString("error.not-in-range");
         invalidCommand = localeConfig.getString("error.invalid-command");
+        cannotBeRepaired = localeConfig.getString("error.cannot-be-repaired");
         configReloaded = localeConfig.getString("plugin-messages.config-reloaded");
     }
 
@@ -191,5 +198,25 @@ public class LocaleHandler {
 
     public String getHealOther() {
         return healOther;
+    }
+
+    public String getCannotBeRepaired() {
+        return cannotBeRepaired;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public String getRepairSelf() {
+        return repairSelf;
+    }
+
+    public String getRepairOther() {
+        return repairOther;
+    }
+
+    public String getRepairHeader() {
+        return repairHeader;
     }
 }

@@ -1,6 +1,5 @@
-package simplexity.adminhax.commands;
+package simplexity.adminhax.commands.hax;
 
-import org.bukkit.attribute.Attribute;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -13,10 +12,11 @@ public class Feed extends AbstractHaxCommand {
     }
 
     @Override
-    public void runLogic(Player player, CommandSender sender){
+    public void runLogic(Player player, CommandSender sender, String[] args) {
         player.setFoodLevel(20);
         player.setSaturation(20f);
-        super.runLogic(player, sender);
+        super.runLogic(player, sender, args);
+
     }
 
     @Override

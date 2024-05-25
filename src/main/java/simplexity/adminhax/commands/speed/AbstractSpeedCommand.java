@@ -1,4 +1,4 @@
-package simplexity.adminhax.commands;
+package simplexity.adminhax.commands.speed;
 
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.Command;

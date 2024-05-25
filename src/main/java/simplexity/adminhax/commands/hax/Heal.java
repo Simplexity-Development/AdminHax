@@ -1,4 +1,4 @@
-package simplexity.adminhax.commands;
+package simplexity.adminhax.commands.hax;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.CommandSender;
@@ -14,10 +14,10 @@ public class Heal extends AbstractHaxCommand {
     }
 
     @Override
-    public void runLogic(Player player, CommandSender sender){
+    public void runLogic(Player player, CommandSender sender, String[] args){
         double health = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
         player.setHealth(health);
-        super.runLogic(player, sender);
+        super.runLogic(player, sender, args);
     }
 
     @Override

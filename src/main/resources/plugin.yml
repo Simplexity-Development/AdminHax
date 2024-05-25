@@ -25,6 +25,10 @@ commands:
     permission: adminhax.commands.heal
     description: allows you to heal
     usage: /<command>
+  repair:
+    permission: adminhax.commands.repair
+    description: allows you to repair
+    usage: /<command> [hand|hotbar|inventory|armor|all]
 permissions:
   adminhax.commands.speed.walk:
     default: op
@@ -56,3 +60,15 @@ permissions:
   adminhax.commands.other.heal:
     default: op
     description: allows you to heal others to max health
+  adminhax.commands.repair:
+    default: op
+    description: allows you to repair
+  adminhax.commands.other.repair:
+    default: op
+    description: allows you to repair
+  adminhax.commands.repair.hand:
+    default: op
+    description: allows you to repair your hand
+  adminhax.commands.other.repair.hand:
+    default: op
+    description: allows you to repair others hand

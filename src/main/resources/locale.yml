@@ -20,12 +20,17 @@ feed:
 heal:
   self: "<green>You have been healed</green>"
   other: "<green>You have healed <target></green>"
+repair:
+  self: "<green><hover:show_text:'<items>'>Your items have been repaired!</hover></green>"
+  other: "<green><hover:show_text:'<items>'>You have repaired <target>'s items!</hover><green>"
+  header: "<aqua><u>Repaired Items</u></aqua>"
 insertion:
   prefix : "<green>[<yellow>SF</yellow>]</green> "
   enabled : "<green>enabled</green>"
   disabled : "<red>disabled</red>"
   flyspeed : "<yellow>flyspeed</yellow>"
   walkspeed : "<yellow>walkspeed</yellow>"
+  item: "\n<gray>• <lang:<item>></gray>"
 error:
   invalid-player : "<red>That is not a valid player. Please check your spelling and try again</red>"
   no-permission : "<red>You do not have permission to run this command</red>"
@@ -34,5 +39,6 @@ error:
   invalid-number : "<red>Sorry, you did not enter a valid flyspeed, please try again</red>"
   not-in-range : "<red>Sorry, you must provide a number between <min> and <max></red>"
   invalid-command : "<red>Sorry, that subcommand is invalid. Please check your syntax and try again</red>"
+  cannot-be-repaired: "<red>That item cannot be repaired</red>"
 plugin-messages:
   config-reloaded: "<gold>Config Reloaded</gold>"
