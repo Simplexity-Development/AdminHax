@@ -27,23 +27,26 @@ public abstract class AbstractHaxCommand implements CommandExecutor {
                 Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidPlayer());
                 return false;
             }
-            runLogic(player, sender, args);
+            runLogic(player, sender, args, true);
             //todo add a cooldown
             return true;
         }
         if (Util.checkIfPlayerAndPerms(sender, basicPermission)) {
             Player playerSender = (Player) sender;
-            runLogic(playerSender, sender, args);
+            runLogic(playerSender, sender, args, false);
             //todo add a cooldown
             return true;
         }
         return false;
     }
 
-    public void runLogic(Player player, CommandSender sender, String[] args) {
-        sendSelfMessage(player);
-        if (!(sender instanceof Player)) return;
-        sendOtherMessage(sender, player);
+    public void runLogic(Player player, CommandSender sender, String[] args, boolean runningOnOther) {
+        if (runningOnOther) {
+            sendOtherMessage(sender, player);
+            sendSelfMessage(player);
+        } else {
+            sendSelfMessage(player);
+        }
     }
 
     public abstract void sendSelfMessage(Player player);

@@ -24,6 +24,7 @@ repair:
   self: "<green><hover:show_text:'<items>'>Your items have been repaired!</hover></green>"
   other: "<green><hover:show_text:'<items>'>You have repaired <target>'s items!</hover><green>"
   header: "<aqua><u>Repaired Items</u></aqua>"
+  no-items-repaired: "<gray>No items were able to be repaired</gray>"
 insertion:
   prefix : "<green>[<yellow>SF</yellow>]</green> "
   enabled : "<green>enabled</green>"

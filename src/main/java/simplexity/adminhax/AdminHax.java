@@ -4,7 +4,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 import simplexity.adminhax.commands.hax.Feed;
 import simplexity.adminhax.commands.Fly;
-import simplexity.adminhax.commands.hax.Repair;
+import simplexity.adminhax.commands.Repair;
 import simplexity.adminhax.commands.speed.FlySpeed;
 import simplexity.adminhax.commands.hax.Heal;
 import simplexity.adminhax.commands.speed.WalkSpeed;

@@ -12,21 +12,21 @@ public class Feed extends AbstractHaxCommand {
     }
 
     @Override
-    public void runLogic(Player player, CommandSender sender, String[] args) {
+    public void runLogic(Player player, CommandSender sender, String[] args, boolean runningOnOther) {
         player.setFoodLevel(20);
         player.setSaturation(20f);
-        super.runLogic(player, sender, args);
+        super.runLogic(player, sender, args, runningOnOther);
 
     }
 
     @Override
     public void sendSelfMessage(Player player) {
-        Util.sendUserMessage(player, LocaleHandler.getInstance().getHealSelf());
+        Util.sendUserMessage(player, LocaleHandler.getInstance().getFeedSelf());
     }
 
     @Override
     public void sendOtherMessage(CommandSender sender, Player player) {
-        Util.sendUserMessage(sender, LocaleHandler.getInstance().getHealOther(), null, player);
+        Util.sendUserMessage(sender, LocaleHandler.getInstance().getFeedOther(), null, player);
     }
 
 }

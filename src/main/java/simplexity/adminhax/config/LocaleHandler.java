@@ -25,7 +25,7 @@ public class LocaleHandler {
     //Heal messages
     private String healSelf, healOther;
     //Repair messages
-    private String repairSelf, repairOther, repairHeader;
+    private String repairSelf, repairOther, repairHeader, noItemsRepaired;
     //Errors
     private String invalidPlayer, noPermission, mustBePlayer, notEnoughArguments, invalidNumber, notInRange,
             invalidCommand, configReloaded, cannotBeRepaired;
@@ -77,6 +77,7 @@ public class LocaleHandler {
         repairSelf = localeConfig.getString("repair.self");
         repairOther = localeConfig.getString("repair.other");
         repairHeader = localeConfig.getString("repair.header");
+        noItemsRepaired = localeConfig.getString("repair.no-items-repaired");
         invalidPlayer = localeConfig.getString("error.invalid-player");
         noPermission = localeConfig.getString("error.no-permission");
         mustBePlayer = localeConfig.getString("error.must-be-player");
@@ -218,5 +219,9 @@ public class LocaleHandler {
 
     public String getRepairHeader() {
         return repairHeader;
+    }
+
+    public String getNoItemsRepaired() {
+        return noItemsRepaired;
     }
 }

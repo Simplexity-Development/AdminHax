@@ -14,10 +14,10 @@ public class Heal extends AbstractHaxCommand {
     }
 
     @Override
-    public void runLogic(Player player, CommandSender sender, String[] args){
+    public void runLogic(Player player, CommandSender sender, String[] args, boolean runningOnOther){
         double health = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
         player.setHealth(health);
-        super.runLogic(player, sender, args);
+        super.runLogic(player, sender, args, runningOnOther);
     }
 
     @Override
