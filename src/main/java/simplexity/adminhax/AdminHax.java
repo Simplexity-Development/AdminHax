@@ -3,7 +3,7 @@ package simplexity.adminhax;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 import simplexity.adminhax.commands.hax.Feed;
-import simplexity.adminhax.commands.Fly;
+import simplexity.adminhax.commands.hax.Fly;
 import simplexity.adminhax.commands.Repair;
 import simplexity.adminhax.commands.speed.FlySpeed;
 import simplexity.adminhax.commands.hax.Heal;
@@ -34,11 +34,10 @@ public final class AdminHax extends JavaPlugin {
         ConfigHandler.getInstance().reloadConfigValues();
         this.getCommand("flyspeed").setExecutor(new FlySpeed(Util.FLY_SPEED_PERMISSION, Util.FLY_SPEED_OTHER_PERMISSION, 0.1f));
         this.getCommand("walkspeed").setExecutor(new WalkSpeed(Util.WALK_SPEED_PERMISSION, Util.WALK_SPEED_OTHER_PERMISSION, 0.2f));
-        this.getCommand("fly").setExecutor(new Fly());
+        this.getCommand("fly").setExecutor(new Fly(Util.FLY_PERMISSION, Util.FLY_OTHER_PERMISSION));
         this.getCommand("feed").setExecutor(new Feed(Util.FEED_PERMISSION, Util.FEED_OTHER_PERMISSION));
         this.getCommand("heal").setExecutor(new Heal(Util.HEAL_PERMISSION, Util.HEAL_OTHER_PERMISSION));
         this.getCommand("repair").setExecutor(new Repair());
-        Repair.setupMaps();
         this.getServer().getPluginManager().registerEvents(new FlyListeners(), this);
         // Plugin startup logic
 

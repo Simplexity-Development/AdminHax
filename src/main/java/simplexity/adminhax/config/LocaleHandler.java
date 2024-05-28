@@ -26,6 +26,8 @@ public class LocaleHandler {
     private String healSelf, healOther;
     //Repair messages
     private String repairSelf, repairOther, repairHeader, noItemsRepaired;
+    //GodMode messages
+    private String godmodeSelf, godmodeOther, godmodeGetSelf, godmodeGetOther;
     //Errors
     private String invalidPlayer, noPermission, mustBePlayer, notEnoughArguments, invalidNumber, notInRange,
             invalidCommand, configReloaded, cannotBeRepaired;
@@ -77,6 +79,10 @@ public class LocaleHandler {
         repairSelf = localeConfig.getString("repair.self");
         repairOther = localeConfig.getString("repair.other");
         repairHeader = localeConfig.getString("repair.header");
+        godmodeSelf = localeConfig.getString("godmode.self");
+        godmodeOther = localeConfig.getString("godmode.other");
+        godmodeGetSelf = localeConfig.getString("godmode.get.self");
+        godmodeGetOther = localeConfig.getString("godmode.get.other");
         noItemsRepaired = localeConfig.getString("repair.no-items-repaired");
         invalidPlayer = localeConfig.getString("error.invalid-player");
         noPermission = localeConfig.getString("error.no-permission");
@@ -223,5 +229,21 @@ public class LocaleHandler {
 
     public String getNoItemsRepaired() {
         return noItemsRepaired;
+    }
+
+    public String getGodmodeSelf() {
+        return godmodeSelf;
+    }
+
+    public String getGodmodeOther() {
+        return godmodeOther;
+    }
+
+    public String getGodmodeGetSelf() {
+        return godmodeGetSelf;
+    }
+
+    public String getGodmodeGetOther() {
+        return godmodeGetOther;
     }
 }

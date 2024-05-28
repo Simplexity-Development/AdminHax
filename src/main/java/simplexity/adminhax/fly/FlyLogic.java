@@ -10,7 +10,7 @@ public class FlyLogic {
     
     private static final NamespacedKey flyStatus = Util.FLY_STATUS;
     
-    public static boolean flyEnabled(Player player) {
+    public static void switchFlyState(Player player) {
         PersistentDataContainer playerPDC = player.getPersistentDataContainer();
         Boolean flyState = playerPDC.get(flyStatus, PersistentDataType.BOOLEAN);
         //If they have no set flystate, or it's off, set true, set flying
@@ -18,12 +18,17 @@ public class FlyLogic {
             playerPDC.set(flyStatus, PersistentDataType.BOOLEAN, true);
             player.setAllowFlight(true);
             player.setFlying(true);
-            return true;
+            return;
         }
         //If their current flystate is on, set false
         playerPDC.set(flyStatus, PersistentDataType.BOOLEAN, false);
         player.setAllowFlight(false);
         player.setFlying(false);
-        return false;
+        return;
+    }
+
+    public static boolean isFlyEnabled(Player player) {
+        PersistentDataContainer playerPDC = player.getPersistentDataContainer();
+        return playerPDC.getOrDefault(flyStatus, PersistentDataType.BOOLEAN, Boolean.FALSE);
     }
 }

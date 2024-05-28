@@ -1,7 +1,7 @@
 fly:
   own: "Your fly has been <value>"
   other: "<target>'s fly has been <value>"
-  by-other: "<green>Your fly has been <value> by <initiator></green>"
+  by-other: "<green>Your fly has been <value></green>"
 speed:
   set:
     own: "<green>Your <speedtype> has been set to <value></green>"
@@ -25,6 +25,12 @@ repair:
   other: "<green><hover:show_text:'<items>'>You have repaired <target>'s items!</hover><green>"
   header: "<aqua><u>Repaired Items</u></aqua>"
   no-items-repaired: "<gray>No items were able to be repaired</gray>"
+godmode:
+  self: "<yellow>God-Mode has been <setting></yellow>"
+  other: "<yellow>God-Mode has been <setting> for <target></yellow>"
+  get:
+    self: "<yellow>God-Mode is currently <setting></yellow>"
+    other: "<yellow><target>'s God-Mode is currently <setting></yellow>"
 insertion:
   prefix : "<green>[<yellow>SF</yellow>]</green> "
   enabled : "<green>enabled</green>"
