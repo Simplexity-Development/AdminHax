@@ -29,6 +29,10 @@ commands:
     permission: adminhax.commands.repair
     description: allows you to repair
     usage: /<command> [hand|hotbar|inventory|armor|all]
+  godmode:
+    permission: adminhax.commands.godmode
+    description: allows you to godmode
+    usage: /<command> [get|toggle] <player>
 permissions:
   adminhax.commands.speed.walk:
     default: op
@@ -72,3 +76,39 @@ permissions:
   adminhax.commands.other.repair.hand:
     default: op
     description: allows you to repair others hand
+  adminhax.commands.repair.hotbar:
+    default: op
+    description: allows you to repair your hotbar
+  adminhax.commands.other.repair.hotbar:
+    default: op
+    description: allows you to repair others hotbar
+  adminhax.commands.repair.inventory:
+    default: op
+    description: allows you to repair your inventory
+  adminhax.commands.other.repair.inventory:
+    default: op
+    description: allows you to repair others inventory
+  adminhax.commands.repair.armor:
+    default: op
+    description: allows you to repair your armor
+  adminhax.commands.other.repair.armor:
+    default: op
+    description: allows you to repair others armor
+  adminhax.commands.repair.all:
+    default: op
+    description: allows you to repair everything
+  adminhax.commands.other.repair.all:
+    default: op
+    description: allows you to repair everything
+  adminhax.commands.godmode:
+    default: op
+    description: allows you to godmode
+  adminhax.commands.other.godmode:
+    default: op
+    description: allows you to godmode
+  adminhax.commands.godmode.get:
+    default: op
+    description: allows you to godmode
+  adminhax.commands.other.godmode.get:
+    default: op
+    description: allows you to godmode

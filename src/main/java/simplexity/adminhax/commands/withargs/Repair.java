@@ -1,4 +1,4 @@
-package simplexity.adminhax.commands;
+package simplexity.adminhax.commands.withargs;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -13,11 +13,7 @@ import simplexity.adminhax.Util;
 import simplexity.adminhax.config.LocaleHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Repair extends AbstractArgsCommands {
     public static final String HOT_BAR = "hotbar";
@@ -26,30 +22,31 @@ public class Repair extends AbstractArgsCommands {
     public static final String ARMOR = "armor";
     public static final String HAND = "hand";
     private static final MiniMessage miniMessage = AdminHax.getMiniMessage();
-    public static final Set<String> VALID_ARGS = new HashSet<>(Arrays.asList(HOT_BAR, INVENTORY, ALL, ARMOR, HAND));
-    public static final HashMap<String, Permission> basicPermissions = new HashMap<>();
-    public static final HashMap<String, Permission> adminPermissions = new HashMap<>();
-    public static final List<String> tabComplete = new ArrayList<>();
     public String cannotBeRepaired;
     public String repairSelf;
     public String repairOther;
     public boolean runningOnOther;
 
-    public Repair() {
-        super();
+    public Repair(Permission DEFAULT_PERMISSION, String DEFAULT_ARG) {
+        super(DEFAULT_PERMISSION, DEFAULT_ARG);
     }
 
     public void setupMaps() {
-        basicPermissions.put(HOT_BAR, Util.REPAIR_HOT_BAR_PERMISSION);
-        basicPermissions.put(INVENTORY, Util.REPAIR_INVENTORY_PERMISSION);
-        basicPermissions.put(ALL, Util.REPAIR_ALL_PERMISSION);
-        basicPermissions.put(ARMOR, Util.REPAIR_ARMOR_PERMISSION);
-        basicPermissions.put(HAND, Util.REPAIR_HAND_PERMISSION);
-        adminPermissions.put(HOT_BAR, Util.REPAIR_HOT_BAR_OTHER_PERMISSION);
-        adminPermissions.put(INVENTORY, Util.REPAIR_INVENTORY_OTHER_PERMISSION);
-        adminPermissions.put(ALL, Util.REPAIR_ALL_OTHER_PERMISSION);
-        adminPermissions.put(ARMOR, Util.REPAIR_ARMOR_OTHER_PERMISSION);
-        adminPermissions.put(HAND, Util.REPAIR_HAND_OTHER_PERMISSION);
+        argToBasicPerm.put(HOT_BAR, Util.REPAIR_HOT_BAR_PERMISSION);
+        argToBasicPerm.put(INVENTORY, Util.REPAIR_INVENTORY_PERMISSION);
+        argToBasicPerm.put(ALL, Util.REPAIR_ALL_PERMISSION);
+        argToBasicPerm.put(ARMOR, Util.REPAIR_ARMOR_PERMISSION);
+        argToBasicPerm.put(HAND, Util.REPAIR_HAND_PERMISSION);
+        argToAdminPerm.put(HOT_BAR, Util.REPAIR_HOT_BAR_OTHER_PERMISSION);
+        argToAdminPerm.put(INVENTORY, Util.REPAIR_INVENTORY_OTHER_PERMISSION);
+        argToAdminPerm.put(ALL, Util.REPAIR_ALL_OTHER_PERMISSION);
+        argToAdminPerm.put(ARMOR, Util.REPAIR_ARMOR_OTHER_PERMISSION);
+        argToAdminPerm.put(HAND, Util.REPAIR_HAND_OTHER_PERMISSION);
+        validArgs.add(HOT_BAR);
+        validArgs.add(INVENTORY);
+        validArgs.add(ALL);
+        validArgs.add(ARMOR);
+        validArgs.add(HAND);
     }
 
     public void runLogic(CommandSender sender, Player player, String repairType) {

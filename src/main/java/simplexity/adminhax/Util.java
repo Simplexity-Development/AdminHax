@@ -7,11 +7,14 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import simplexity.adminhax.config.LocaleHandler;
 
 public class Util {
     private static final MiniMessage miniMessage = AdminHax.getMiniMessage();
     public static final NamespacedKey FLY_STATUS = new NamespacedKey(AdminHax.getInstance(), "flystatus");
+    public static final NamespacedKey GODMODE_STATUS = new NamespacedKey(AdminHax.getInstance(), "godmodestatus");
     public static final Permission WALK_SPEED_PERMISSION = new Permission("adminhax.commands.speed.walk");
     public static final Permission WALK_SPEED_OTHER_PERMISSION =  new Permission("adminhax.commands.other.speed.walk");
     public static final Permission FLY_SPEED_PERMISSION =  new Permission("adminhax.commands.speed.fly");
@@ -86,6 +89,20 @@ public class Util {
             return false;
         }
         return true;
+    }
+
+    public static void flipPDCState(Player player, NamespacedKey namespacedKey, boolean defaultState){
+        PersistentDataContainer playerPDC = player.getPersistentDataContainer();
+        if (playerPDC.getOrDefault(namespacedKey, PersistentDataType.BOOLEAN, defaultState)){
+            playerPDC.set(namespacedKey, PersistentDataType.BOOLEAN, false);
+        } else {
+            playerPDC.set(namespacedKey, PersistentDataType.BOOLEAN, true);
+        }
+    }
+
+    public static boolean isPDCStateEnabled(Player player, NamespacedKey namespacedKey, boolean defaultState){
+        PersistentDataContainer playerPDC = player.getPersistentDataContainer();
+        return playerPDC.getOrDefault(namespacedKey, PersistentDataType.BOOLEAN, defaultState);
     }
 }
 

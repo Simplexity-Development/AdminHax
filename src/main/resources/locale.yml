@@ -26,11 +26,11 @@ repair:
   header: "<aqua><u>Repaired Items</u></aqua>"
   no-items-repaired: "<gray>No items were able to be repaired</gray>"
 godmode:
-  self: "<yellow>God-Mode has been <setting></yellow>"
-  other: "<yellow>God-Mode has been <setting> for <target></yellow>"
+  self: "<yellow>God-Mode has been <value></yellow>"
+  other: "<yellow>God-Mode has been <value> for <target></yellow>"
   get:
-    self: "<yellow>God-Mode is currently <setting></yellow>"
-    other: "<yellow><target>'s God-Mode is currently <setting></yellow>"
+    self: "<yellow>God-Mode is currently <value></yellow>"
+    other: "<yellow><target>'s God-Mode is currently <value></yellow>"
 insertion:
   prefix : "<green>[<yellow>SF</yellow>]</green> "
   enabled : "<green>enabled</green>"

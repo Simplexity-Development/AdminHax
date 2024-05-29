@@ -1,4 +1,4 @@
-package simplexity.adminhax.commands;
+package simplexity.adminhax.commands.withargs;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,12 +18,23 @@ import java.util.Set;
 
 public abstract class AbstractArgsCommands implements TabExecutor {
 
-    public Set<String> VALID_ARGS;
+    public ArrayList<String> validArgs;
     public Permission DEFAULT_PERMISSION;
-    public static final List<String> tabComplete = new ArrayList<>();
-    public final HashMap<String, Permission> argToBasicPerm = new HashMap<>();
-    public final HashMap<String, Permission> argToAdminPerm = new HashMap<>();
+    public final String DEFAULT_ARG;
+    public static List<String> tabComplete;
+    public final HashMap<String, Permission> argToBasicPerm;
+    public final HashMap<String, Permission> argToAdminPerm;
     public boolean runningOnOther;
+
+    public AbstractArgsCommands(Permission DEFAULT_PERMISSION, String DEFAULT_ARG){
+        this.DEFAULT_PERMISSION = DEFAULT_PERMISSION;
+        this.DEFAULT_ARG = DEFAULT_ARG;
+        argToBasicPerm = new HashMap<>();
+        argToAdminPerm = new HashMap<>();
+        tabComplete = new ArrayList<>();
+        validArgs = new ArrayList<>();
+        setupMaps();
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
@@ -42,7 +53,7 @@ public abstract class AbstractArgsCommands implements TabExecutor {
                 }
                 Player player = (Player) sender;
                 runningOnOther = false;
-                runLogic(sender, player, null);
+                runLogic(sender, player, DEFAULT_ARG);
                 return true;
             }
             case 1: {
@@ -92,11 +103,6 @@ public abstract class AbstractArgsCommands implements TabExecutor {
         }
     }
 
-    public AbstractArgsCommands(Permission DEFAULT_PERMISSION){
-        this.DEFAULT_PERMISSION = DEFAULT_PERMISSION;
-        setupMaps();
-    }
-
     public abstract void setupMaps();
     public abstract void runLogic(CommandSender sender, Player player, String arg);
 
@@ -105,7 +111,7 @@ public abstract class AbstractArgsCommands implements TabExecutor {
     }
 
     public boolean isValidArg(String arg) {
-        return VALID_ARGS.contains(arg.toLowerCase());
+        return validArgs.contains(arg.toLowerCase());
     }
 
     private boolean userHasBasicPermission(CommandSender sender, String arg) {
@@ -140,7 +146,7 @@ public abstract class AbstractArgsCommands implements TabExecutor {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         tabComplete.clear();
         if (args.length < 2) {
-            for (String arg : VALID_ARGS) {
+            for (String arg : validArgs) {
                 if (sender.hasPermission(argToBasicPerm.get(arg)) || sender.hasPermission(argToAdminPerm.get(arg))) {
                     tabComplete.add(arg);
                 }
