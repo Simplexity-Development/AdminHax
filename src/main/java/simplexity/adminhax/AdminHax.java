@@ -14,17 +14,9 @@ import simplexity.adminhax.config.LocaleHandler;
 import simplexity.adminhax.listeners.FlyListeners;
 
 public final class AdminHax extends JavaPlugin {
-    /*
-    /feed <player>
-    /heal <player>
-    /repair
-    /godmode <player>
-    /walkspeed
-    /smite
-    */
+
     private static AdminHax instance;
     private static final MiniMessage miniMessage = MiniMessage.miniMessage();
-
 
 
     @Override
@@ -41,18 +33,12 @@ public final class AdminHax extends JavaPlugin {
         this.getCommand("repair").setExecutor(new Repair(Util.REPAIR_HAND_PERMISSION, "hand"));
         this.getCommand("godmode").setExecutor(new GodMode(Util.GODMODE_PERMISSION, "toggle"));
         this.getServer().getPluginManager().registerEvents(new FlyListeners(), this);
-        // Plugin startup logic
-
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
     }
 
     public static AdminHax getInstance() {
         return instance;
     }
+
     public static MiniMessage getMiniMessage() {
         return miniMessage;
     }

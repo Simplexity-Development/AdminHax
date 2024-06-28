@@ -1,37 +1,39 @@
 name: AdminHax
 version: '${project.version}'
 main: simplexity.adminhax.AdminHax
+description: "A plugin that allows fun but kinda game-breaking commands."
+author: Simplexity
 api-version: '1.20'
 commands:
   flyspeed:
     permission: adminhax.commands.speed.fly
     description: allows you to change your walk speed
-    usage: /<command> [set|get|reset] <speed>
-    aliases: [fs]
+    usage: /flyspeed [set|get|reset] [value|player] <value>
+    aliases: [ fs ]
   walkspeed:
     permission: adminhax.commands.speed.walk
     description: allows you to change your walk speed
-    usage: /<command> [set|get|reset] <speed>
+    usage: /walkspeed [set|get|reset] [value|player] <value>
     aliases: [ ws ]
   fly:
     permission: adminhax.commands.fly
     description: allows you to fly
-    usage: /<command>
+    usage: /fly <player>
   feed:
     permission: adminhax.commands.feed
-    description: allows you to feed
-    usage: /<command>
+    description: allows you to fill your hunger bar
+    usage: /feed <player>
   heal:
     permission: adminhax.commands.heal
     description: allows you to heal
-    usage: /<command>
+    usage: /<command> <player>
   repair:
     permission: adminhax.commands.repair
-    description: allows you to repair
+    description: allows you to repair things
     usage: /<command> [hand|hotbar|inventory|armor|all]
   godmode:
     permission: adminhax.commands.godmode
-    description: allows you to godmode
+    description: allows you to toggle godmode/invincibility
     usage: /<command> [get|toggle] <player>
 permissions:
   adminhax.commands.speed.walk:
@@ -39,25 +41,25 @@ permissions:
     description: allows you to change your walk speed
   adminhax.commands.other.speed.walk:
     default: op
-    description: allows you to change your walk speed
+    description: allows you to change others' walk speed
   adminhax.commands.speed.fly:
     default: op
-    description: allows you to change your walk speed
+    description: allows you to change your fly speed
   adminhax.commands.other.speed.fly:
     default: op
-    description: allows you to change your walk speed
+    description: allows you to change others' flyspeed
   adminhax.commands.fly:
     default: op
     description: allows you to fly
   adminhax.commands.other.fly:
     default: op
-    description: allows you to fly
+    description: allows you to make others fly
   adminhax.commands.feed:
     default: op
-    description: allows you to feed your player to full
+    description: allows you to fill your character's hunger bar
   adminhax.commands.other.feed:
     default: op
-    description: allows you to feed others to full
+    description: allows you to fill others' hunger bar
   adminhax.commands.heal:
     default: op
     description: allows you to heal to max health
@@ -66,49 +68,69 @@ permissions:
     description: allows you to heal others to max health
   adminhax.commands.repair:
     default: op
-    description: allows you to repair
+    description: allows you to repair items
   adminhax.commands.other.repair:
     default: op
-    description: allows you to repair
+    description: allows you to repair other people's items
   adminhax.commands.repair.hand:
     default: op
-    description: allows you to repair your hand
+    description: allows you to repair the item in your hand
+    children:
+      adminhax.commands.repair: true
   adminhax.commands.other.repair.hand:
     default: op
-    description: allows you to repair others hand
+    description: allows you to repair the item in others' hand
+    children:
+      adminhax.commands.other.repair: true
   adminhax.commands.repair.hotbar:
     default: op
-    description: allows you to repair your hotbar
+    description: allows you to repair the items in your hotbar
+    children:
+      adminhax.commands.repair: true
   adminhax.commands.other.repair.hotbar:
     default: op
-    description: allows you to repair others hotbar
+    description: allows you to repair the items in others' hotbar
+    children:
+      adminhax.commands.other.repair: true
   adminhax.commands.repair.inventory:
     default: op
-    description: allows you to repair your inventory
+    description: allows you to repair the items in your inventory
+    children:
+      adminhax.commands.repair: true
   adminhax.commands.other.repair.inventory:
     default: op
-    description: allows you to repair others inventory
+    description: allows you to repair the items in others' inventory
+    children:
+      adminhax.commands.other.repair: true
   adminhax.commands.repair.armor:
     default: op
     description: allows you to repair your armor
+    children:
+      adminhax.commands.repair: true
   adminhax.commands.other.repair.armor:
     default: op
-    description: allows you to repair others armor
+    description: allows you to repair others' armor
+    children:
+      adminhax.commands.other.repair: true
   adminhax.commands.repair.all:
     default: op
-    description: allows you to repair everything
+    description: allows you to repair everything in your inventory and armor slots
+    children:
+      adminhax.commands.repair: true
   adminhax.commands.other.repair.all:
     default: op
-    description: allows you to repair everything
+    description: allows you to repair everything in others' inventory and armor slots
+    children:
+      adminhax.commands.other.repair: true
   adminhax.commands.godmode:
     default: op
-    description: allows you to godmode
+    description: allows you to be invincible
   adminhax.commands.other.godmode:
     default: op
-    description: allows you to godmode
+    description: allows you to make others invincible
   adminhax.commands.godmode.get:
     default: op
-    description: allows you to godmode
+    description: allows you to see what your godmode status is
   adminhax.commands.other.godmode.get:
     default: op
-    description: allows you to godmode
+    description: allows you to see what others' godmode status is

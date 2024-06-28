@@ -35,7 +35,6 @@ public class Util {
     public static final Permission HEAL_OTHER_PERMISSION =  new Permission("adminhax.heal.other");
     public static final Permission FEED_PERMISSION =  new Permission("adminhax.commands.feed");
     public static final Permission FEED_OTHER_PERMISSION =  new Permission("adminhax.commands.other.feed");
-    public static final Permission SMITE_PERMISSION =  new Permission("adminhax.smite");
     public static final Permission GODMODE_PERMISSION =  new Permission("adminhax.commands.godmode");
     public static final Permission GODMODE_GET_PERMISSION =  new Permission("adminhax.commands.godmode.get");
     public static final Permission GODMODE_OTHER_PERMISSION =  new Permission("adminhax.commands.other.godmode");

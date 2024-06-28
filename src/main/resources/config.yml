@@ -11,6 +11,3 @@ flight:
     world-change: true
     respawn: true
     gamemode: true
-godmode:
-  persistent:
-    session: false
