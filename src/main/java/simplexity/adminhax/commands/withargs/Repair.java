@@ -22,9 +22,6 @@ public class Repair extends AbstractArgsCommands {
     public static final String ARMOR = "armor";
     public static final String HAND = "hand";
     private static final MiniMessage miniMessage = AdminHax.getMiniMessage();
-    public String cannotBeRepaired;
-    public String repairSelf;
-    public String repairOther;
     public boolean runningOnOther;
 
     public Repair(Permission DEFAULT_PERMISSION, String DEFAULT_ARG) {
@@ -76,11 +73,11 @@ public class Repair extends AbstractArgsCommands {
     private void repairHand(Player player, CommandSender sender) {
         ItemStack item = player.getInventory().getItemInMainHand();
         if (!(item.getItemMeta() instanceof Damageable damageable)) {
-            Util.sendUserMessage(sender, cannotBeRepaired);
+            Util.sendUserMessage(sender, LocaleHandler.getInstance().getCannotBeRepaired());
             return;
         }
         if (!damageable.hasDamage()) {
-            Util.sendUserMessage(sender, cannotBeRepaired);
+            Util.sendUserMessage(sender, LocaleHandler.getInstance().getCannotBeRepaired());
             return;
         }
         int currentDamage = damageable.getDamage();
@@ -172,14 +169,14 @@ public class Repair extends AbstractArgsCommands {
         }
         Component repairedItems = repairedItemsList(itemList);
         if (runningOnOther) {
-            sender.sendMessage(miniMessage.deserialize(repairOther,
+            sender.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getRepairOther(),
                     Placeholder.component("items", repairedItems),
                     Placeholder.component("target", player.displayName())));
-            player.sendMessage(miniMessage.deserialize(repairSelf,
+            player.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getRepairSelf(),
                     Placeholder.component("items", repairedItems)));
             return;
         }
-        sender.sendMessage(miniMessage.deserialize(repairSelf,
+        sender.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getRepairSelf(),
                 Placeholder.component("items", repairedItems)));
     }
 
