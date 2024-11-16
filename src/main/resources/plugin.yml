@@ -35,6 +35,15 @@ commands:
     permission: adminhax.commands.godmode
     description: allows you to toggle godmode/invincibility
     usage: /<command> [get|toggle] <player>
+  broadcastmsg:
+    permissions: adminhax.commands.broadcast
+    description: allows you to broadcast a message server-wide
+    usage: /broadcastmsg <message>
+    aliases: [broadcast]
+  adminhaxreload:
+    permissions: adminhax.reload
+    description: reloads the plugin
+    usage: /adminhaxreload
 permissions:
   adminhax.commands.speed.walk:
     default: op
@@ -134,3 +143,9 @@ permissions:
   adminhax.commands.other.godmode.get:
     default: op
     description: allows you to see what others' godmode status is
+  adminhax.commands.broadcast:
+    default: op
+    description: Allows you to broadcast a message to the server
+  adminhax.reload:
+    default: op
+    description: Reloads the plugin

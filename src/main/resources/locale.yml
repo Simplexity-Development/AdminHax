@@ -47,5 +47,7 @@ error:
   not-in-range : "<red>Sorry, you must provide a number between <min> and <max></red>"
   invalid-command : "<red>Sorry, that subcommand is invalid. Please check your syntax and try again</red>"
   cannot-be-repaired: "<red>That item cannot be repaired</red>"
+broadcast:
+  server-prefix: "<green>[Server]</green> » "
 plugin-messages:
   config-reloaded: "<gold>Config Reloaded</gold>"

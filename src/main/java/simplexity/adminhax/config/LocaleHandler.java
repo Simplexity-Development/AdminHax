@@ -28,6 +28,8 @@ public class LocaleHandler {
     private String repairSelf, repairOther, repairHeader, noItemsRepaired;
     //GodMode messages
     private String godmodeSelf, godmodeOther, godmodeGetSelf, godmodeGetOther;
+    //Broadcast Message
+    private String broadcastServerPrefix;
     //Errors
     private String invalidPlayer, noPermission, mustBePlayer, notEnoughArguments, invalidNumber, notInRange,
             invalidCommand, configReloaded, cannotBeRepaired;
@@ -55,44 +57,45 @@ public class LocaleHandler {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        prefix = localeConfig.getString("insertion.prefix");
-        enabled = localeConfig.getString("insertion.enabled");
-        disabled = localeConfig.getString("insertion.disabled");
-        flyspeed = localeConfig.getString("insertion.flyspeed");
-        walkspeed = localeConfig.getString("insertion.walkspeed");
-        item = localeConfig.getString("insertion.item");
-        flySetOwn = localeConfig.getString("fly.own");
-        flySetOther = localeConfig.getString("fly.other");
-        flySetByOther = localeConfig.getString("fly.by-other");
-        speedGetOther = localeConfig.getString("speed.get.other");
-        speedGetOwn = localeConfig.getString("speed.get.own");
-        speedSetOwn = localeConfig.getString("speed.set.own");
-        speedResetOwn = localeConfig.getString("speed.reset.own");
-        speedSetOther = localeConfig.getString("speed.set.other");
-        speedResetOther = localeConfig.getString("speed.reset.other");
-        speedSetByOther = localeConfig.getString("speed.set.by-other");
-        speedResetByOther = localeConfig.getString("speed.reset.by-other");
-        feedSelf = localeConfig.getString("feed.self");
-        feedOther = localeConfig.getString("feed.other");
-        healSelf = localeConfig.getString("heal.self");
-        healOther = localeConfig.getString("heal.other");
-        repairSelf = localeConfig.getString("repair.self");
-        repairOther = localeConfig.getString("repair.other");
-        repairHeader = localeConfig.getString("repair.header");
-        godmodeSelf = localeConfig.getString("godmode.self");
-        godmodeOther = localeConfig.getString("godmode.other");
-        godmodeGetSelf = localeConfig.getString("godmode.get.self");
-        godmodeGetOther = localeConfig.getString("godmode.get.other");
-        noItemsRepaired = localeConfig.getString("repair.no-items-repaired");
-        invalidPlayer = localeConfig.getString("error.invalid-player");
-        noPermission = localeConfig.getString("error.no-permission");
-        mustBePlayer = localeConfig.getString("error.must-be-player");
-        notEnoughArguments = localeConfig.getString("error.not-enough-arguments");
-        invalidNumber = localeConfig.getString("error.invalid-number");
-        notInRange = localeConfig.getString("error.not-in-range");
-        invalidCommand = localeConfig.getString("error.invalid-command");
-        cannotBeRepaired = localeConfig.getString("error.cannot-be-repaired");
-        configReloaded = localeConfig.getString("plugin-messages.config-reloaded");
+        prefix = localeConfig.getString("insertion.prefix", "<green>[<yellow>SF</yellow>]</green> ");
+        enabled = localeConfig.getString("insertion.enabled", "<green>enabled</green>");
+        disabled = localeConfig.getString("insertion.disabled", "<red>disabled</red>");
+        flyspeed = localeConfig.getString("insertion.flyspeed", "<yellow>flyspeed</yellow>");
+        walkspeed = localeConfig.getString("insertion.walkspeed", "<yellow>walkspeed</yellow>");
+        item = localeConfig.getString("insertion.item", "\n<gray>• <lang:<item>></gray>");
+        flySetOwn = localeConfig.getString("fly.own", "Your fly has been <value>");
+        flySetOther = localeConfig.getString("fly.other", "<target>'s fly has been <value>");
+        flySetByOther = localeConfig.getString("fly.by-other",  "<green>Your fly has been <value></green>");
+        speedGetOther = localeConfig.getString("speed.get.other", "<grey><target>'s current <speedtype> is <value></grey>");
+        speedGetOwn = localeConfig.getString("speed.get.own","<grey>Your <speedtype> is currently set to <value></grey>");
+        speedSetOwn = localeConfig.getString("speed.set.own", "<green>Your <speedtype> has been set to <value></green>");
+        speedResetOwn = localeConfig.getString("speed.reset.own", "<green>Your <speedtype> has been reset</green>");
+        speedSetOther = localeConfig.getString("speed.set.other", "<green>You set <target>'s <speedtype> to <value></green>");
+        speedResetOther = localeConfig.getString("speed.reset.other", "<green><target>'s <speedtype> has been reset</green>");
+        speedSetByOther = localeConfig.getString("speed.set.by-other", "<green>Your <speedtype> has been set to <value> by <initiator></green>");
+        speedResetByOther = localeConfig.getString("speed.reset.by-other", "<green>Your <speedtype> has been reset by <initiator></green>");
+        feedSelf = localeConfig.getString("feed.self", "<green>You have been fed</green>");
+        feedOther = localeConfig.getString("feed.other", "<green>You have fed <target></green>");
+        healSelf = localeConfig.getString("heal.self", "<green>You have been healed</green>");
+        healOther = localeConfig.getString("heal.other", "<green>You have healed <target></green>");
+        repairSelf = localeConfig.getString("repair.self", "<green><hover:show_text:'<items>'>Your items have been repaired!</hover></green>");
+        repairOther = localeConfig.getString("repair.other", "<green><hover:show_text:'<items>'>You have repaired <target>'s items!</hover><green>");
+        repairHeader = localeConfig.getString("repair.header", "<aqua><u>Repaired Items</u></aqua>");
+        godmodeSelf = localeConfig.getString("godmode.self", "<yellow>God-Mode has been <value></yellow>");
+        godmodeOther = localeConfig.getString("godmode.other", "<yellow>God-Mode has been <value> for <target></yellow>");
+        godmodeGetSelf = localeConfig.getString("godmode.get.self", "<yellow>God-Mode is currently <value></yellow>");
+        godmodeGetOther = localeConfig.getString("godmode.get.other", "<yellow><target>'s God-Mode is currently <value></yellow>");
+        noItemsRepaired = localeConfig.getString("repair.no-items-repaired",  "<gray>No items were able to be repaired</gray>");
+        invalidPlayer = localeConfig.getString("error.invalid-player", "<red>That is not a valid player. Please check your spelling and try again</red>");
+        noPermission = localeConfig.getString("error.no-permission",  "<red>You do not have permission to run this command</red>");
+        mustBePlayer = localeConfig.getString("error.must-be-player", "<red>You must be a player to run this command</red>");
+        notEnoughArguments = localeConfig.getString("error.not-enough-arguments", "<red>You did not provide enough arguments. Please check your syntax and try again</red>");
+        invalidNumber = localeConfig.getString("error.invalid-number",  "<red>Sorry, you did not enter a valid flyspeed, please try again</red>");
+        notInRange = localeConfig.getString("error.not-in-range", "<red>Sorry, you must provide a number between <min> and <max></red>");
+        invalidCommand = localeConfig.getString("error.invalid-command", "<red>Sorry, that subcommand is invalid. Please check your syntax and try again</red>");
+        cannotBeRepaired = localeConfig.getString("error.cannot-be-repaired", "<red>That item cannot be repaired</red>");
+        configReloaded = localeConfig.getString("plugin-messages.config-reloaded", "<gold>Config Reloaded</gold>");
+        broadcastServerPrefix = localeConfig.getString("broadcast.server-prefix", "<green>[Server]</green> » ");
     }
 
     public String getPrefix() {
@@ -245,5 +248,9 @@ public class LocaleHandler {
 
     public String getGodmodeGetOther() {
         return godmodeGetOther;
+    }
+
+    public String getBroadcastServerPrefix() {
+        return broadcastServerPrefix;
     }
 }
