@@ -4,8 +4,8 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
-import simplexity.adminhax.Util;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.util.Util;
+import simplexity.adminhax.config.Message;
 
 public class Heal extends AbstractHaxCommand {
 
@@ -22,12 +22,12 @@ public class Heal extends AbstractHaxCommand {
 
     @Override
     public void sendSelfMessage(Player player) {
-        Util.sendUserMessage(player, LocaleHandler.getInstance().getHealSelf());
+        Util.sendUserMessage(player, Message.HEAL_SELF.getMessage());
     }
 
     @Override
     public void sendOtherMessage(CommandSender sender, Player player) {
-        Util.sendUserMessage(sender, LocaleHandler.getInstance().getHealOther(), null, player);
+        Util.sendUserMessage(sender, Message.HEAL_OTHER.getMessage(), null, player);
     }
 
 }

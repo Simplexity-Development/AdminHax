@@ -5,13 +5,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import simplexity.adminhax.AdminHax;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.config.Message;
 
 public class BroadcastMsg implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (args.length == 0) {
-            sender.sendRichMessage(LocaleHandler.getInstance().getInvalidCommand());
+            sender.sendRichMessage(Message.ERROR_INVALID_COMMAND.getMessage());
             return false;
         }
         StringBuilder msg = new StringBuilder();
@@ -19,7 +19,7 @@ public class BroadcastMsg implements CommandExecutor {
             msg.append(arg).append(" ");
         }
         String message = msg.toString().trim();
-        message = LocaleHandler.getInstance().getBroadcastServerPrefix() + message;
+        message = Message.BROADCAST_SERVER_PREFIX.getMessage() + message;
         AdminHax.getInstance().getServer().sendMessage(AdminHax.getMiniMessage().deserialize(message));
         return true;
     }

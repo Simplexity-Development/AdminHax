@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.jetbrains.annotations.NotNull;
 import simplexity.adminhax.AdminHax;
-import simplexity.adminhax.Util;
+import simplexity.adminhax.util.Util;
 import simplexity.adminhax.config.ConfigHandler;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.config.Message;
 
 import java.util.List;
 import java.util.Set;
@@ -65,23 +65,23 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
 
     public void setSpeedLogic(CommandSender sender, Player player, String[] args, Float speed) {
         if (speed == null) {
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidNumber());
+            Util.sendUserMessage(sender, Message.ERROR_INVALID_NUMBER.getMessage());
             return;
         }
-        setByOther = LocaleHandler.getInstance().getSpeedSetByOther();
-        setOther = LocaleHandler.getInstance().getSpeedSetOther();
-        setOwn = LocaleHandler.getInstance().getSpeedSetOwn();
+        setByOther = Message.SPEED_SET_BY_OTHER.getMessage();
+        setOther = Message.SPEED_SET_OTHER.getMessage();
+        setOwn = Message.SPEED_SET_OWN.getMessage();
     }
 
     public void resetSpeedLogic(CommandSender sender, Player player, String[] args) {
-        resetByOther = LocaleHandler.getInstance().getSpeedResetByOther();
-        resetOther = LocaleHandler.getInstance().getSpeedResetOther();
-        resetOwn = LocaleHandler.getInstance().getSpeedResetOwn();
+        resetByOther = Message.SPEED_RESET_BY_OTHER.getMessage();
+        resetOther = Message.SPEED_RESET_OTHER.getMessage();
+        resetOwn = Message.SPEED_RESET_OWN.getMessage();
     }
 
     public void getSpeedLogic(CommandSender sender, Player player, String[] args) {
-        getOther = LocaleHandler.getInstance().getSpeedGetOther();
-        getOwn = LocaleHandler.getInstance().getSpeedGetOwn();
+        getOther = Message.SPEED_GET_OTHER.getMessage();
+        getOwn = Message.SPEED_GET_OWN.getMessage();
     }
 
     private void setSenderHasBasicPermission(CommandSender sender) {
@@ -170,15 +170,15 @@ public abstract class AbstractSpeedCommand implements TabExecutor {
     }
 
     private void sendInvalidCommandMessage(CommandSender sender) {
-        Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidCommand());
+        Util.sendUserMessage(sender, Message.ERROR_INVALID_COMMAND.getMessage());
     }
 
     private void sendInvalidPlayerMessage(CommandSender sender) {
-        Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidPlayer());
+        Util.sendUserMessage(sender, Message.ERROR_INVALID_PLAYER.getMessage());
     }
 
     public void sendOutOfRangeMessage(CommandSender sender) {
-        sender.sendRichMessage(LocaleHandler.getInstance().getNotInRange(),
+        sender.sendRichMessage(Message.ERROR_NOT_IN_RANGE.getMessage(),
                 Placeholder.parsed("min", String.valueOf(ConfigHandler.getInstance().getMinFlySpeed())),
                 Placeholder.parsed("max", String.valueOf(ConfigHandler.getInstance().getMaxFlySpeed())));
     }

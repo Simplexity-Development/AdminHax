@@ -9,8 +9,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.permissions.Permission;
 import simplexity.adminhax.AdminHax;
-import simplexity.adminhax.Util;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.util.Permissions;
+import simplexity.adminhax.util.Util;
+import simplexity.adminhax.config.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +30,16 @@ public class Repair extends AbstractArgsCommands {
     }
 
     public void setupMaps() {
-        argToBasicPerm.put(HOT_BAR, Util.REPAIR_HOT_BAR_PERMISSION);
-        argToBasicPerm.put(INVENTORY, Util.REPAIR_INVENTORY_PERMISSION);
-        argToBasicPerm.put(ALL, Util.REPAIR_ALL_PERMISSION);
-        argToBasicPerm.put(ARMOR, Util.REPAIR_ARMOR_PERMISSION);
-        argToBasicPerm.put(HAND, Util.REPAIR_HAND_PERMISSION);
-        argToAdminPerm.put(HOT_BAR, Util.REPAIR_HOT_BAR_OTHER_PERMISSION);
-        argToAdminPerm.put(INVENTORY, Util.REPAIR_INVENTORY_OTHER_PERMISSION);
-        argToAdminPerm.put(ALL, Util.REPAIR_ALL_OTHER_PERMISSION);
-        argToAdminPerm.put(ARMOR, Util.REPAIR_ARMOR_OTHER_PERMISSION);
-        argToAdminPerm.put(HAND, Util.REPAIR_HAND_OTHER_PERMISSION);
+        argToBasicPerm.put(HOT_BAR, Permissions.REPAIR_HOT_BAR_PERMISSION);
+        argToBasicPerm.put(INVENTORY, Permissions.REPAIR_INVENTORY_PERMISSION);
+        argToBasicPerm.put(ALL, Permissions.REPAIR_ALL_PERMISSION);
+        argToBasicPerm.put(ARMOR, Permissions.REPAIR_ARMOR_PERMISSION);
+        argToBasicPerm.put(HAND, Permissions.REPAIR_HAND_PERMISSION);
+        argToAdminPerm.put(HOT_BAR, Permissions.REPAIR_HOT_BAR_OTHER_PERMISSION);
+        argToAdminPerm.put(INVENTORY, Permissions.REPAIR_INVENTORY_OTHER_PERMISSION);
+        argToAdminPerm.put(ALL, Permissions.REPAIR_ALL_OTHER_PERMISSION);
+        argToAdminPerm.put(ARMOR, Permissions.REPAIR_ARMOR_OTHER_PERMISSION);
+        argToAdminPerm.put(HAND, Permissions.REPAIR_HAND_OTHER_PERMISSION);
         validArgs.add(HOT_BAR);
         validArgs.add(INVENTORY);
         validArgs.add(ALL);
@@ -64,7 +65,7 @@ public class Repair extends AbstractArgsCommands {
                 repairArmor(player, sender);
                 break;
             default:
-                Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidCommand());
+                Util.sendUserMessage(sender, Message.ERROR_INVALID_COMMAND.getMessage());
                 break;
         }
     }
@@ -73,11 +74,11 @@ public class Repair extends AbstractArgsCommands {
     private void repairHand(Player player, CommandSender sender) {
         ItemStack item = player.getInventory().getItemInMainHand();
         if (!(item.getItemMeta() instanceof Damageable damageable)) {
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getCannotBeRepaired());
+            Util.sendUserMessage(sender, Message.ERROR_CANNOT_BE_REPAIRED.getMessage());
             return;
         }
         if (!damageable.hasDamage()) {
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getCannotBeRepaired());
+            Util.sendUserMessage(sender, Message.ERROR_CANNOT_BE_REPAIRED.getMessage());
             return;
         }
         int currentDamage = damageable.getDamage();
@@ -164,29 +165,29 @@ public class Repair extends AbstractArgsCommands {
 
     private void sendUserMessage(CommandSender sender, Player player, List<ItemStack> itemList) {
         if (itemList.isEmpty()) {
-            sender.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getNoItemsRepaired()));
+            sender.sendMessage(miniMessage.deserialize(Message.REPAIR_NO_ITEMS_REPAIRED.getMessage()));
             return;
         }
         Component repairedItems = repairedItemsList(itemList);
         if (runningOnOther) {
-            sender.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getRepairOther(),
+            sender.sendMessage(miniMessage.deserialize(Message.REPAIR_OTHER.getMessage(),
                     Placeholder.component("items", repairedItems),
                     Placeholder.component("target", player.displayName())));
-            player.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getRepairSelf(),
+            player.sendMessage(miniMessage.deserialize(Message.REPAIR_SELF.getMessage(),
                     Placeholder.component("items", repairedItems)));
             return;
         }
-        sender.sendMessage(miniMessage.deserialize(LocaleHandler.getInstance().getRepairSelf(),
+        sender.sendMessage(miniMessage.deserialize(Message.REPAIR_SELF.getMessage(),
                 Placeholder.component("items", repairedItems)));
     }
 
     private Component repairedItemsList(List<ItemStack> itemList) {
         Component repairedItems = Component.empty();
         if (itemList.isEmpty()) return repairedItems;
-        repairedItems = repairedItems.append(miniMessage.deserialize(LocaleHandler.getInstance().getRepairHeader()));
+        repairedItems = repairedItems.append(miniMessage.deserialize(Message.REPAIR_HEADER.getMessage()));
         for (ItemStack itemStack : itemList) {
             String itemStringName = itemStack.getType().getItemTranslationKey();
-            Component itemName = miniMessage.deserialize(LocaleHandler.getInstance().getItem(), Placeholder.parsed("item", itemStringName));
+            Component itemName = miniMessage.deserialize(Message.INSERT_ITEM.getMessage(), Placeholder.parsed("item", itemStringName));
             repairedItems = repairedItems.append(itemName);
         }
         return repairedItems;

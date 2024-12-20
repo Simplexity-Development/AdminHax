@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import simplexity.adminhax.Util;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.util.Util;
+import simplexity.adminhax.config.Message;
 
 public class Fly extends AbstractHaxCommand {
 
@@ -26,22 +26,22 @@ public class Fly extends AbstractHaxCommand {
     @Override
     public void sendSelfMessage(Player player) {
         String value = getValueString(player);
-        Util.sendUserMessage(player, LocaleHandler.getInstance().getFlySetOwn(), value);
+        Util.sendUserMessage(player, Message.FLY_SET_OWN.getMessage(), value);
     }
 
     @Override
     public void sendOtherMessage(CommandSender sender, Player player) {
         String value = getValueString(player);
-        Util.sendUserMessage(player, LocaleHandler.getInstance().getFlySetOwn(), value);
-        Util.sendUserMessage(sender, LocaleHandler.getInstance().getFlySetOther(), value, player);
+        Util.sendUserMessage(player, Message.FLY_SET_OWN.getMessage(), value);
+        Util.sendUserMessage(sender, Message.FLY_SET_OTHER.getMessage(), value, player);
     }
 
     private String getValueString(Player player){
         String value;
         if (isFlyEnabled(player)) {
-            value = LocaleHandler.getInstance().getEnabled();
+            value = Message.INSERT_ENABLED.getMessage();
         } else {
-            value = LocaleHandler.getInstance().getDisabled();
+            value = Message.INSERT_DISABLED.getMessage();
         }
         return value;
     }

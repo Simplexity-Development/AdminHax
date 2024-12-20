@@ -4,8 +4,9 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
-import simplexity.adminhax.Util;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.util.Permissions;
+import simplexity.adminhax.util.Util;
+import simplexity.adminhax.config.Message;
 
 public class GodMode extends AbstractArgsCommands {
     public static final String GET_ARG = "get";
@@ -20,10 +21,10 @@ public class GodMode extends AbstractArgsCommands {
     public void setupMaps() {
         validArgs.add(GET_ARG);
         validArgs.add(TOGGLE_ARG);
-        argToBasicPerm.put(GET_ARG, Util.GODMODE_GET_PERMISSION);
-        argToBasicPerm.put(TOGGLE_ARG, Util.GODMODE_PERMISSION);
-        argToAdminPerm.put(TOGGLE_ARG, Util.GODMODE_OTHER_PERMISSION);
-        argToAdminPerm.put(GET_ARG, Util.GODMODE_GET_OTHER_PERMISSION);
+        argToBasicPerm.put(GET_ARG, Permissions.GODMODE_GET_PERMISSION);
+        argToBasicPerm.put(TOGGLE_ARG, Permissions.GODMODE_PERMISSION);
+        argToAdminPerm.put(TOGGLE_ARG, Permissions.GODMODE_OTHER_PERMISSION);
+        argToAdminPerm.put(GET_ARG, Permissions.GODMODE_GET_OTHER_PERMISSION);
     }
 
     @Override
@@ -31,21 +32,21 @@ public class GodMode extends AbstractArgsCommands {
         switch (arg.toLowerCase()) {
             case GET_ARG:
                 if (!runningOnOther) {
-                    sendOwnMessage(player, LocaleHandler.getInstance().getGodmodeGetSelf());
+                    sendOwnMessage(player, Message.GODMODE_GET_SELF.getMessage());
                 } else {
-                    sendOtherMessage(sender, LocaleHandler.getInstance().getGodmodeGetOther(), player);
+                    sendOtherMessage(sender, Message.GODMODE_GET_OTHER.getMessage(), player);
                 }
                 return;
             case TOGGLE_ARG:
                 toggleGodmode(player);
                 if (!runningOnOther) {
-                    sendOwnMessage(player, LocaleHandler.getInstance().getGodmodeSelf());
+                    sendOwnMessage(player, Message.GODMODE_SELF.getMessage());
                 } else {
-                    sendOtherMessage(sender, LocaleHandler.getInstance().getGodmodeOther(), player);
+                    sendOtherMessage(sender, Message.GODMODE_OTHER.getMessage(), player);
                 }
                 break;
             default:
-                Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidCommand());
+                Util.sendUserMessage(sender, Message.ERROR_INVALID_COMMAND.getMessage());
         }
     }
 
@@ -57,9 +58,9 @@ public class GodMode extends AbstractArgsCommands {
     public String getGodmodeStatus(Player player) {
         String value;
         if (Util.isPDCStateEnabled(player, godModeStatus, false)) {
-            value = LocaleHandler.getInstance().getEnabled();
+            value = Message.INSERT_ENABLED.getMessage();
         } else {
-            value = LocaleHandler.getInstance().getDisabled();
+            value = Message.INSERT_DISABLED.getMessage();
         }
         return value;
     }

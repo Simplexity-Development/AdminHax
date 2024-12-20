@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import simplexity.adminhax.config.ConfigHandler;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.config.Message;
 
 public class FlySpeed extends AbstractSpeedCommand {
 
@@ -21,7 +21,7 @@ public class FlySpeed extends AbstractSpeedCommand {
         }
         speed /= 10f;
         player.setFlySpeed(speed);
-        String speedType = LocaleHandler.getInstance().getFlyspeed();
+        String speedType = Message.INSERT_FLY_SPEED.getMessage();
         String speedString = String.valueOf(speed * 10f);
         if (isRunningOnAnotherPlayer()) {
             sendOtherMessage(speedType, sender, player, speedString, setByOther, setOther);
@@ -34,7 +34,7 @@ public class FlySpeed extends AbstractSpeedCommand {
     public void resetSpeedLogic(CommandSender sender, Player player, String[] args) {
         super.resetSpeedLogic(sender, player, args);
         player.setFlySpeed(defaultSpeed);
-        String speedType = LocaleHandler.getInstance().getFlyspeed();
+        String speedType = Message.INSERT_FLY_SPEED.getMessage();
         String speedString = String.valueOf(defaultSpeed * 10f);
         player.setFlySpeed(defaultSpeed);
         if (isRunningOnAnotherPlayer()) {
@@ -47,7 +47,7 @@ public class FlySpeed extends AbstractSpeedCommand {
     @Override
     public void getSpeedLogic(CommandSender sender, Player player, String[] args) {
         super.getSpeedLogic(sender, player, args);
-        String speedType = LocaleHandler.getInstance().getFlyspeed();
+        String speedType = Message.INSERT_FLY_SPEED.getMessage();
         String speedString = String.valueOf(player.getFlySpeed() * 10f);
         if (isRunningOnAnotherPlayer()) {
             sendOtherMessage(speedType, sender, player, speedString, null, getOther);

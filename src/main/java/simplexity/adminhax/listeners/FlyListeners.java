@@ -12,9 +12,10 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import simplexity.adminhax.AdminHax;
-import simplexity.adminhax.Util;
+import simplexity.adminhax.util.Permissions;
+import simplexity.adminhax.util.Util;
 import simplexity.adminhax.config.ConfigHandler;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.config.Message;
 
 public class FlyListeners implements Listener {
     
@@ -29,15 +30,15 @@ public class FlyListeners implements Listener {
         PersistentDataContainer playerPDC = player.getPersistentDataContainer();
         Bukkit.getScheduler().runTaskLater(AdminHax.getInstance(), () -> {
             boolean flyEnabled = playerPDC.getOrDefault(flyStatus, PersistentDataType.BOOLEAN, false);
-            if (flyEnabled && player.hasPermission(Util.FLY_PERMISSION)) {
+            if (flyEnabled && player.hasPermission(Permissions.FLY_PERMISSION)) {
                 player.setAllowFlight(true);
                 if (player.getFallDistance() > 0f) {
                     player.setFlying(true);
                 }
-                Util.sendUserMessage(player, LocaleHandler.getInstance().getFlySetOwn(), LocaleHandler.getInstance().getEnabled(), null);
+                Util.sendUserMessage(player, Message.FLY_SET_OWN.getMessage(), Message.INSERT_ENABLED.getMessage(), null);
                 return;
             }
-            if (flyEnabled && !player.hasPermission(Util.FLY_PERMISSION)) {
+            if (flyEnabled && !player.hasPermission(Permissions.FLY_PERMISSION)) {
                 playerPDC.set(flyStatus, PersistentDataType.BOOLEAN, false);
             }
         }, 10);

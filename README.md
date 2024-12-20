@@ -2,15 +2,17 @@
 
 ## Commands
 
-| Command   | Permission                   | Description                  | Usage                                                       | Aliases |
-|-----------|------------------------------|------------------------------|-------------------------------------------------------------|---------|
-| flyspeed  | adminhax.commands.speed.fly  | change your fly speed        | /flyspeed [set \| get \|reset] [value \|player] <value>     | fs      |
-| walkspeed | adminhax.commands.speed.walk | change your walk speed       | /walkspeed [set \| get \|reset] [value \|player] <value>    | ws      |
-| fly       | adminhax.commands.fly        | fly                          | /fly <player>                                               |         |
-| feed      | adminhax.commands.feed       | fill your hunger bar         | /feed <player>                                              |         |
-| heal      | adminhax.commands.heal       | heal                         | /heal <player>                                              |         |
-| repair    | adminhax.commands.repair     | repair items                 | /repair [hand \| hotbar \|inventory \|armor \|all] <player> |         |
-| godmode   | adminhax.commands.godmode    | toggle godmode/invincibility | /godmode [get \| toggle] <player>                           |         |
+| Command        | Permission                   | Description                            | Usage                                                       | Aliases      |
+|----------------|------------------------------|----------------------------------------|-------------------------------------------------------------|--------------|
+| flyspeed       | adminhax.commands.speed.fly  | change your fly speed                  | /flyspeed [set \| get \|reset] [value \|player] <value>     | fs           |
+| walkspeed      | adminhax.commands.speed.walk | change your walk speed                 | /walkspeed [set \| get \|reset] [value \|player] <value>    | ws           |
+| fly            | adminhax.commands.fly        | fly                                    | /fly <player>                                               |              |
+| feed           | adminhax.commands.feed       | fill your hunger bar                   | /feed <player>                                              |              |
+| heal           | adminhax.commands.heal       | heal                                   | /heal <player>                                              |              |
+| repair         | adminhax.commands.repair     | repair items                           | /repair [hand \| hotbar \|inventory \|armor \|all] <player> |              |
+| godmode        | adminhax.commands.godmode    | toggle godmode/invincibility           | /godmode [get \| toggle] <player>                           |              |
+| broadcast      | adminhax.commands.broadcast  | Send a message to the whole server     | /broadcast <message>                                        | broadcastmsg |
+| adminhaxreload | adminhax.reload              | reloads the AdminHax config and locale | /adminhaxreload                                             |              |
 
 ## Permissions
 
@@ -42,5 +44,7 @@
 | adminhax.commands.repair.all             | op      | repair everything in your inventory and armor slots    |
 | adminhax.commands.godmode                | op      | be invincible                                          |
 | adminhax.commands.godmode.get            | op      | see what your godmode status is                        |
+| adminhax.commands.broadcast              | op      | broadcast a message server-wide                        |
+| adminhax.reload                          | op      | reload the plugin configuration                        |
 
 ---

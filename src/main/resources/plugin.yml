@@ -4,148 +4,152 @@ main: simplexity.adminhax.AdminHax
 description: "A plugin that allows fun but kinda game-breaking commands."
 author: Simplexity
 api-version: '1.20'
+
 commands:
   flyspeed:
     permission: adminhax.commands.speed.fly
-    description: allows you to change your walk speed
-    usage: /flyspeed [set|get|reset] [value|player] <value>
-    aliases: [ fs ]
+    description: Change your flight speed
+    aliases: [fs]
   walkspeed:
     permission: adminhax.commands.speed.walk
-    description: allows you to change your walk speed
-    usage: /walkspeed [set|get|reset] [value|player] <value>
-    aliases: [ ws ]
+    description: Change your walk speed
+    aliases: [ws]
   fly:
     permission: adminhax.commands.fly
-    description: allows you to fly
-    usage: /fly <player>
+    description: Toggle flight for yourself or others
   feed:
     permission: adminhax.commands.feed
-    description: allows you to fill your hunger bar
-    usage: /feed <player>
+    description: Refill hunger
   heal:
     permission: adminhax.commands.heal
-    description: allows you to heal
-    usage: /<command> <player>
+    description: Restore health
   repair:
     permission: adminhax.commands.repair
-    description: allows you to repair things
-    usage: /<command> [hand|hotbar|inventory|armor|all]
+    description: Repair items
   godmode:
     permission: adminhax.commands.godmode
-    description: allows you to toggle godmode/invincibility
-    usage: /<command> [get|toggle] <player>
+    description: Toggle invincibility
   broadcastmsg:
-    permissions: adminhax.commands.broadcast
-    description: allows you to broadcast a message server-wide
-    usage: /broadcastmsg <message>
+    permission: adminhax.commands.broadcast
+    description: Broadcast a message to the server
     aliases: [broadcast]
+  rename:
+    permission: adminhax.commands.rename
+    description: Rename an item in hand
   adminhaxreload:
-    permissions: adminhax.reload
-    description: reloads the plugin
-    usage: /adminhaxreload
+    permission: adminhax.reload
+    description: Reload the plugin
+
 permissions:
+  adminhax:
+    description: Base permissions for AdminHax
+    children:
+      adminhax.commands.speed.walk: true
+      adminhax.commands.speed.fly: true
+      adminhax.commands.fly: true
+      adminhax.commands.feed: true
+      adminhax.commands.heal: true
+      adminhax.commands.repair: true
+      adminhax.commands.godmode: true
+      adminhax.commands.broadcast: true
+      adminhax.commands.rename: true
+      adminhax.reload: true
+
+  adminhax.commands.speed:
+    description: Permissions for speed commands
+    children:
+      adminhax.commands.speed.walk: true
+      adminhax.commands.speed.fly: true
+
   adminhax.commands.speed.walk:
     default: op
-    description: allows you to change your walk speed
-  adminhax.commands.other.speed.walk:
-    default: op
-    description: allows you to change others' walk speed
+    description: Change your walk speed
   adminhax.commands.speed.fly:
     default: op
-    description: allows you to change your fly speed
-  adminhax.commands.other.speed.fly:
-    default: op
-    description: allows you to change others' flyspeed
+    description: Change your fly speed
+
   adminhax.commands.fly:
     default: op
-    description: allows you to fly
-  adminhax.commands.other.fly:
-    default: op
-    description: allows you to make others fly
+    description: Toggle flight
   adminhax.commands.feed:
     default: op
-    description: allows you to fill your character's hunger bar
-  adminhax.commands.other.feed:
-    default: op
-    description: allows you to fill others' hunger bar
+    description: Refill hunger
   adminhax.commands.heal:
     default: op
-    description: allows you to heal to max health
-  adminhax.commands.other.heal:
-    default: op
-    description: allows you to heal others to max health
+    description: Restore health
+
   adminhax.commands.repair:
-    default: op
-    description: allows you to repair items
-  adminhax.commands.other.repair:
-    default: op
-    description: allows you to repair other people's items
+    description: Repair commands
+    children:
+      adminhax.commands.repair.hand: true
+      adminhax.commands.repair.hotbar: true
+      adminhax.commands.repair.inventory: true
+      adminhax.commands.repair.armor: true
+      adminhax.commands.repair.all: true
+
   adminhax.commands.repair.hand:
     default: op
-    description: allows you to repair the item in your hand
-    children:
-      adminhax.commands.repair: true
-  adminhax.commands.other.repair.hand:
-    default: op
-    description: allows you to repair the item in others' hand
-    children:
-      adminhax.commands.other.repair: true
+    description: Repair the item in your hand
   adminhax.commands.repair.hotbar:
     default: op
-    description: allows you to repair the items in your hotbar
-    children:
-      adminhax.commands.repair: true
-  adminhax.commands.other.repair.hotbar:
-    default: op
-    description: allows you to repair the items in others' hotbar
-    children:
-      adminhax.commands.other.repair: true
+    description: Repair items in your hotbar
   adminhax.commands.repair.inventory:
     default: op
-    description: allows you to repair the items in your inventory
-    children:
-      adminhax.commands.repair: true
-  adminhax.commands.other.repair.inventory:
-    default: op
-    description: allows you to repair the items in others' inventory
-    children:
-      adminhax.commands.other.repair: true
+    description: Repair items in your inventory
   adminhax.commands.repair.armor:
     default: op
-    description: allows you to repair your armor
-    children:
-      adminhax.commands.repair: true
-  adminhax.commands.other.repair.armor:
-    default: op
-    description: allows you to repair others' armor
-    children:
-      adminhax.commands.other.repair: true
+    description: Repair your armor
   adminhax.commands.repair.all:
     default: op
-    description: allows you to repair everything in your inventory and armor slots
-    children:
-      adminhax.commands.repair: true
-  adminhax.commands.other.repair.all:
-    default: op
-    description: allows you to repair everything in others' inventory and armor slots
-    children:
-      adminhax.commands.other.repair: true
+    description: Repair all items
+
   adminhax.commands.godmode:
     default: op
-    description: allows you to be invincible
-  adminhax.commands.other.godmode:
-    default: op
-    description: allows you to make others invincible
-  adminhax.commands.godmode.get:
-    default: op
-    description: allows you to see what your godmode status is
-  adminhax.commands.other.godmode.get:
-    default: op
-    description: allows you to see what others' godmode status is
+    description: Toggle invincibility
   adminhax.commands.broadcast:
     default: op
-    description: Allows you to broadcast a message to the server
+    description: Broadcast a server-wide message
+  adminhax.commands.rename:
+    description: Rename commands
+    children:
+      adminhax.commands.rename.color: true
+      adminhax.commands.rename.format: true
+  adminhax.bypass.rename.length:
+    description: Bypass the configured max length of item names (Note, may cause unwanted visual behavior with names going out of screen)
+    default: false
+
+  adminhax.commands.rename.color:
+    description: Rename with colors
+    children:
+      adminhax.commands.rename.color.gradient: true
+      adminhax.commands.rename.color.rainbow: true
+  adminhax.commands.rename.color.gradient:
+    default: op
+    description: Use gradient colors in renames
+  adminhax.commands.rename.color.rainbow:
+    default: op
+    description: Use rainbow tag in renames
+
+  adminhax.commands.rename.format:
+    description: Rename with formats
+    children:
+      adminhax.commands.rename.format.strikethrough: true
+      adminhax.commands.rename.format.italic: true
+      adminhax.commands.rename.format.bold: true
+      adminhax.commands.rename.format.obfuscated: true
+  adminhax.commands.rename.format.strikethrough:
+    default: op
+    description: Use strikethrough format
+  adminhax.commands.rename.format.italic:
+    default: op
+    description: Use italic format
+  adminhax.commands.rename.format.bold:
+    default: op
+    description: Use bold format
+  adminhax.commands.rename.format.obfuscated:
+    default: op
+    description: Use obfuscated format
+
   adminhax.reload:
     default: op
-    description: Reloads the plugin
+    description: Reload the plugin

@@ -20,6 +20,7 @@ public class ConfigHandler {
     private float maxWalkSpeed, minWalkSpeed, maxFlySpeed, minFlySpeed;
     private boolean sessionPersistentFlight, worldChangePersistentFlight, respawnPersistentFlight,
             gamemodeChangePersistentFlight;
+    private int maxRenameCharacters;
 
     public void reloadConfigValues() {
         AdminHax.getInstance().reloadConfig();
@@ -32,6 +33,7 @@ public class ConfigHandler {
         worldChangePersistentFlight = config.getBoolean("flight.persistent.world-change", true);
         respawnPersistentFlight = config.getBoolean("flight.persistent.respawn", true);
         gamemodeChangePersistentFlight = config.getBoolean("flight.persistent.gamemode-change", true);
+        maxRenameCharacters = config.getInt("rename.max-characters", 50);
     }
 
     private float checkFloat(float defaultValue, String configPath, FileConfiguration config) {
@@ -84,5 +86,9 @@ public class ConfigHandler {
 
     public boolean isGamemodeChangePersistentFlight() {
         return gamemodeChangePersistentFlight;
+    }
+
+    public int getMaxRenameCharacters() {
+        return maxRenameCharacters;
     }
 }

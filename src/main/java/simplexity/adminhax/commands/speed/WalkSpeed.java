@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import simplexity.adminhax.config.ConfigHandler;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.config.Message;
 
 public class WalkSpeed extends AbstractSpeedCommand {
     public WalkSpeed(Permission basicPermission, Permission adminPermission, float defaultSpeed) {
@@ -19,7 +19,7 @@ public class WalkSpeed extends AbstractSpeedCommand {
         }
         speed /= 10f;
         player.setWalkSpeed(speed);
-        String speedType = LocaleHandler.getInstance().getWalkspeed();
+        String speedType = Message.INSERT_WALK_SPEED.getMessage();
         String speedString = String.valueOf(speed * 10f);
         if (isRunningOnAnotherPlayer()) {
             sendOtherMessage(speedType, sender, player, speedString, setByOther, setOther);
@@ -32,7 +32,7 @@ public class WalkSpeed extends AbstractSpeedCommand {
     public void resetSpeedLogic(CommandSender sender, Player player, String[] args) {
         super.resetSpeedLogic(sender, player, args);
         player.setWalkSpeed(defaultSpeed);
-        String speedType = LocaleHandler.getInstance().getWalkspeed();
+        String speedType = Message.INSERT_WALK_SPEED.getMessage();
         String speedString = String.valueOf(defaultSpeed * 10f);
         player.setWalkSpeed(defaultSpeed);
         if (isRunningOnAnotherPlayer()) {
@@ -45,7 +45,7 @@ public class WalkSpeed extends AbstractSpeedCommand {
     @Override
     public void getSpeedLogic(CommandSender sender, Player player, String[] args) {
         super.getSpeedLogic(sender, player, args);
-        String speedType = LocaleHandler.getInstance().getWalkspeed();
+        String speedType = Message.INSERT_WALK_SPEED.getMessage();
         String speedString = String.valueOf(player.getWalkSpeed() * 10f);
         if (isRunningOnAnotherPlayer()) {
             sendOtherMessage(speedType, sender, player, speedString,  null, getOther);

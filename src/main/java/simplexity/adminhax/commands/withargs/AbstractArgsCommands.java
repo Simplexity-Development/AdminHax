@@ -8,13 +8,12 @@ import org.bukkit.permissions.Permission;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import simplexity.adminhax.AdminHax;
-import simplexity.adminhax.Util;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.util.Util;
+import simplexity.adminhax.config.Message;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public abstract class AbstractArgsCommands implements TabExecutor {
 
@@ -38,9 +37,9 @@ public abstract class AbstractArgsCommands implements TabExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        String invalidCommand = LocaleHandler.getInstance().getInvalidCommand();
-        String mustBePlayer = LocaleHandler.getInstance().getMustBePlayer();
-        String invalidPlayer = LocaleHandler.getInstance().getInvalidPlayer();
+        String invalidCommand = Message.ERROR_INVALID_COMMAND.getMessage();
+        String mustBePlayer = Message.ERROR_MUST_BE_PLAYER.getMessage();
+        String invalidPlayer = Message.ERROR_INVALID_PLAYER.getMessage();
         switch (args.length) {
             case 0: {
                 if (!isSenderPlayer(sender)) {
@@ -131,12 +130,12 @@ public abstract class AbstractArgsCommands implements TabExecutor {
         }
         String type = args[0];
         if (!userHasAdminPermission(sender, type)) {
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidCommand());
+            Util.sendUserMessage(sender, Message.ERROR_INVALID_COMMAND.getMessage());
             return null;
         }
         Player player = AdminHax.getInstance().getServer().getPlayer(args[1]);
         if (player == null) {
-            Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidPlayer());
+            Util.sendUserMessage(sender, Message.ERROR_INVALID_PLAYER.getMessage());
             return null;
         }
         return player;

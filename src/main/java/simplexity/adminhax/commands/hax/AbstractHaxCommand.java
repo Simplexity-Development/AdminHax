@@ -6,8 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.jetbrains.annotations.NotNull;
-import simplexity.adminhax.Util;
-import simplexity.adminhax.config.LocaleHandler;
+import simplexity.adminhax.util.Util;
+import simplexity.adminhax.config.Message;
 
 public abstract class AbstractHaxCommand implements CommandExecutor {
 
@@ -24,7 +24,7 @@ public abstract class AbstractHaxCommand implements CommandExecutor {
         if (args.length > 0) {
             Player player = Util.getPlayerFromArgs(adminPermission, sender, args);
             if (player == null) {
-                Util.sendUserMessage(sender, LocaleHandler.getInstance().getInvalidPlayer());
+                Util.sendUserMessage(sender, Message.ERROR_INVALID_PLAYER.getMessage());
                 return false;
             }
             runLogic(player, sender, args, true);
