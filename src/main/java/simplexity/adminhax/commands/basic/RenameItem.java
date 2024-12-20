@@ -42,8 +42,9 @@ public class RenameItem implements CommandExecutor {
         }
         Component newName = parsedName(player, renameString);
         setItemName(newName, heldItem);
+        String itemName = "<lang:" + heldItem.translationKey() + ">";
         player.sendRichMessage(Message.RENAME_SUCCESSFUL.getMessage(),
-                Placeholder.unparsed("item", heldItem.translationKey()),
+                Placeholder.parsed("item", itemName),
                 Placeholder.component("name", newName));
         return true;
     }

@@ -6,7 +6,7 @@
 
   <groupId>simplexity</groupId>
   <artifactId>AdminHax</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
   <packaging>jar</packaging>
 
   <name>AdminHax</name>
@@ -51,12 +51,12 @@
 
   <repositories>
       <repository>
-          <id>papermc-repo</id>
-          <url>https://repo.papermc.io/repository/maven-public/</url>
-      </repository>
-      <repository>
           <id>sonatype</id>
           <url>https://oss.sonatype.org/content/groups/public/</url>
+      </repository>
+      <repository>
+          <id>papermc-repo</id>
+          <url>https://repo.papermc.io/repository/maven-public/</url>
       </repository>
   </repositories>
 
