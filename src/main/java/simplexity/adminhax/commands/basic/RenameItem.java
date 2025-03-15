@@ -6,19 +6,22 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import simplexity.adminhax.AdminHax;
 import simplexity.adminhax.config.ConfigHandler;
 import simplexity.adminhax.config.Message;
 import simplexity.adminhax.util.Permissions;
 import simplexity.adminhax.util.RenamePermission;
 
-public class RenameItem implements CommandExecutor {
+import java.util.List;
+
+public class RenameItem implements TabExecutor {
 
     private final MiniMessage miniMessage = AdminHax.getMiniMessage();
 
@@ -64,5 +67,10 @@ public class RenameItem implements CommandExecutor {
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.displayName(name);
         itemStack.setItemMeta(itemMeta);
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+        return List.of("");
     }
 }
