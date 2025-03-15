@@ -11,7 +11,7 @@ import simplexity.adminhax.config.Message;
 public class GodMode extends AbstractArgsCommands {
     public static final String GET_ARG = "get";
     public static final String TOGGLE_ARG = "toggle";
-    private NamespacedKey godModeStatus = Util.GODMODE_STATUS;
+    private final NamespacedKey godModeStatus = Util.GODMODE_STATUS;
 
     public GodMode(Permission DEFAULT_PERMISSION, String DEFAULT_ARG) {
         super(DEFAULT_PERMISSION, DEFAULT_ARG);
@@ -51,8 +51,14 @@ public class GodMode extends AbstractArgsCommands {
     }
 
     public void toggleGodmode(Player player) {
-        player.setInvulnerable(!player.isInvulnerable());
-        Util.flipPDCState(player, godModeStatus, false);
+        boolean currentlyEnabled = Util.isPDCStateEnabled(player, godModeStatus, false);
+        if (currentlyEnabled) {
+            player.setInvulnerable(false);
+            Util.setPdcState(player, godModeStatus, false);
+            return;
+        }
+        player.setInvulnerable(true);
+        Util.setPdcState(player, godModeStatus, true);
     }
 
     public String getGodmodeStatus(Player player) {

@@ -76,6 +76,11 @@ public class Util {
         }
     }
 
+    public static void setPdcState(Player player, NamespacedKey namespacedKey, boolean state){
+        PersistentDataContainer playerPdc = player.getPersistentDataContainer();
+        playerPdc.set(namespacedKey, PersistentDataType.BOOLEAN, state);
+    }
+
     public static boolean isPDCStateEnabled(Player player, NamespacedKey namespacedKey, boolean defaultState){
         PersistentDataContainer playerPDC = player.getPersistentDataContainer();
         return playerPDC.getOrDefault(namespacedKey, PersistentDataType.BOOLEAN, defaultState);

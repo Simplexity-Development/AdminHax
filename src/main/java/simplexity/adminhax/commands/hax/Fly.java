@@ -64,6 +64,5 @@ public class Fly extends AbstractHaxCommand {
         Util.flipPDCState(player, flyStatus, false);
         player.setAllowFlight(false);
         player.setFlying(false);
-        return;
     }
 }
