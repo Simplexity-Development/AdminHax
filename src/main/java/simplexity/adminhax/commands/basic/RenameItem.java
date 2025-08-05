@@ -40,7 +40,7 @@ public class RenameItem implements TabExecutor {
         }
         ItemStack heldItem = player.getInventory().getItemInMainHand();
         if (heldItem.isEmpty() || heldItem.getType().isEmpty()) {
-            player.sendRichMessage(Message.ERROR_MUST_HOLD_ITEM.getMessage());
+            player.sendRichMessage(Message.ERROR_MUST_HOLD_ITEM_TO_RENAME.getMessage());
             return false;
         }
         Component newName = parsedName(player, renameString);

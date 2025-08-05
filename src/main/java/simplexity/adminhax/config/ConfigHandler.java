@@ -1,8 +1,11 @@
 package simplexity.adminhax.config;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import simplexity.adminhax.AdminHax;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class ConfigHandler {
@@ -19,8 +22,9 @@ public class ConfigHandler {
 
     private float maxWalkSpeed, minWalkSpeed, maxFlySpeed, minFlySpeed;
     private boolean sessionPersistentFlight, worldChangePersistentFlight, respawnPersistentFlight,
-            gamemodeChangePersistentFlight;
+            gamemodeChangePersistentFlight, respectBindingCurse;
     private int maxRenameCharacters;
+    private static final HashSet<Material> disabledHatItems = new HashSet<>();
 
     public void reloadConfigValues() {
         AdminHax.getInstance().reloadConfig();
@@ -34,6 +38,19 @@ public class ConfigHandler {
         respawnPersistentFlight = config.getBoolean("flight.persistent.respawn", true);
         gamemodeChangePersistentFlight = config.getBoolean("flight.persistent.gamemode-change", true);
         maxRenameCharacters = config.getInt("rename.max-characters", 50);
+        respectBindingCurse = config.getBoolean("hat.respect-curse-of-binding", true);
+        List<String> disabledItems = config.getStringList("hat.disabled-items");
+        disabledHatItems.clear();
+        if (!disabledItems.isEmpty()) {
+            for (String disabledItem : disabledItems) {
+                Material itemType = Material.getMaterial(disabledItem);
+                if (itemType == null) {
+                    logger.info(disabledItem + " is not a valid material, please check your syntax");
+                    continue;
+                }
+                disabledHatItems.add(itemType);
+            }
+        }
     }
 
     private float checkFloat(float defaultValue, String configPath, FileConfiguration config) {
@@ -90,5 +107,13 @@ public class ConfigHandler {
 
     public int getMaxRenameCharacters() {
         return maxRenameCharacters;
+    }
+
+    public boolean shouldRespectBindingCurse() {
+        return respectBindingCurse;
+    }
+
+    public HashSet<Material> getDisabledHatItems(){
+        return disabledHatItems;
     }
 }

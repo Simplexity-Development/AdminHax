@@ -3,6 +3,7 @@ package simplexity.adminhax;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 import simplexity.adminhax.commands.basic.BroadcastMsg;
+import simplexity.adminhax.commands.basic.Hat;
 import simplexity.adminhax.commands.basic.ReloadPlugin;
 import simplexity.adminhax.commands.basic.RenameItem;
 import simplexity.adminhax.commands.hax.Feed;
@@ -41,6 +42,7 @@ public final class AdminHax extends JavaPlugin {
         this.getCommand("broadcastmsg").setExecutor(new BroadcastMsg());
         this.getCommand("adminhaxreload").setExecutor(new ReloadPlugin());
         this.getCommand("rename").setExecutor(new RenameItem());
+        this.getCommand("hat").setExecutor(new Hat());
         this.getServer().getPluginManager().registerEvents(new FlyListeners(), this);
     }
 

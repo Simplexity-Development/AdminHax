@@ -6,6 +6,9 @@ author: Simplexity
 api-version: '1.20'
 
 commands:
+  hat:
+    permission: adminhax.commands.hat
+    description: Allows players to put items on their helmet slot
   flyspeed:
     permission: adminhax.commands.speed.fly
     description: Change your flight speed
@@ -53,7 +56,6 @@ permissions:
       adminhax.commands.godmode: true
       adminhax.commands.broadcast: true
       adminhax.commands.rename: true
-      adminhax.reload: true
 
   adminhax.commands.speed:
     description: Permissions for speed commands
@@ -149,7 +151,9 @@ permissions:
   adminhax.commands.rename.format.obfuscated:
     default: op
     description: Use obfuscated format
-
+  adminhax.commands.hat:
+    default: op
+    description: Allows a user to put items in their helmet slot with the /hat command
   adminhax.reload:
     default: op
     description: Reload the plugin
