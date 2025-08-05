@@ -21,42 +21,46 @@ public class Hat implements CommandExecutor {
             sender.sendRichMessage(Message.ERROR_MUST_BE_PLAYER.getMessage());
             return false;
         }
-        ItemStack itemInHand = player.getInventory().getItemInMainHand();
-        ItemStack itemInHelmSlot = player.getInventory().getHelmet();
-        if (itemInHelmSlot == null && itemInHand.isEmpty()) {
-            player.sendRichMessage(Message.ERROR_NO_ITEMS_HAT.getMessage());
+        ItemStack itemToHat = player.getInventory().getItemInMainHand();
+        ItemStack previousHelm = player.getInventory().getHelmet();
+        boolean userHadHelmetBefore = (previousHelm != null && !previousHelm.isEmpty());
+        if (!userHadHelmetBefore && itemToHat.isEmpty()) {
+            player.sendRichMessage(Message.ERROR_NO_HAT_ITEMS.getMessage());
             return false;
         }
-        if ((itemInHelmSlot != null && !itemInHelmSlot.isEmpty()) && (
-                itemInHelmSlot.getItemMeta().hasEnchant(Enchantment.BINDING_CURSE) &&
-                ConfigHandler.getInstance().isHatRespectsCurseOfBinding()
-        )){
+        if (userHadHelmetBefore && (previousHelm.getItemMeta().hasEnchant(Enchantment.BINDING_CURSE) &&
+                ConfigHandler.getInstance().shouldRespectBindingCurse())) {
             player.sendRichMessage(Message.ERROR_CURSE_OF_BINDING.getMessage());
             return false;
         }
-        if (ConfigHandler.getInstance().getDisabledHatItems().contains(itemInHand.getType())) {
+        if (ConfigHandler.getInstance().getDisabledHatItems().contains(itemToHat.getType())) {
             player.sendRichMessage(Message.ERROR_HAT_NOT_ALLOWED.getMessage());
             return false;
         }
-        if (itemInHand.getAmount() > 1) {
-            player.getInventory().setHelmet(itemInHand.asOne());
-            int amt = itemInHand.getAmount() - 1;
-            itemInHand.setAmount(amt);
-            player.getInventory().setItemInMainHand(itemInHand);
-            if (itemInHelmSlot != null) {
-                HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(itemInHelmSlot);
-                if (!leftover.isEmpty()) {
-                    for (Integer integer : leftover.keySet()) {
-                        player.getWorld().dropItem(player.getLocation(), leftover.get(integer));
-                    }
-                }
-            }
-            player.sendRichMessage(Message.HAT_SUCCESSFUL.getMessage());
-        } else {
-            player.getInventory().setHelmet(itemInHand);
-            if (itemInHelmSlot != null) player.getInventory().setItemInMainHand(itemInHelmSlot);
-            player.sendRichMessage(Message.HAT_SUCCESSFUL.getMessage());
+        if (itemToHat.isEmpty()) {
+            player.getInventory().setHelmet(null);
+            player.getInventory().setItemInMainHand(previousHelm);
+            player.sendRichMessage(Message.HAT_REMOVED.getMessage());
+            return true;
         }
+        player.getInventory().setHelmet(itemToHat.asOne());
+        itemToHat.subtract();
+        if (!userHadHelmetBefore) {
+            player.sendRichMessage(Message.HAT_SUCCESSFUL.getMessage());
+            return true;
+        }
+        if (player.getInventory().getItemInMainHand().isEmpty()) {
+            player.getInventory().setItemInMainHand(previousHelm);
+            player.sendRichMessage(Message.HAT_SUCCESSFUL.getMessage());
+            return true;
+        }
+        HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(previousHelm);
+        if (!leftover.isEmpty()) {
+            for (Integer index : leftover.keySet()) {
+                player.getWorld().dropItem(player.getLocation(), leftover.get(index));
+            }
+        }
+        player.sendRichMessage(Message.HAT_SUCCESSFUL.getMessage());
         return true;
     }
 }

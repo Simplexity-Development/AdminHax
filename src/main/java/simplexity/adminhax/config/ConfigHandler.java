@@ -22,7 +22,7 @@ public class ConfigHandler {
 
     private float maxWalkSpeed, minWalkSpeed, maxFlySpeed, minFlySpeed;
     private boolean sessionPersistentFlight, worldChangePersistentFlight, respawnPersistentFlight,
-            gamemodeChangePersistentFlight, hatRespectsCurseOfBinding;
+            gamemodeChangePersistentFlight, respectBindingCurse;
     private int maxRenameCharacters;
     private static final HashSet<Material> disabledHatItems = new HashSet<>();
 
@@ -38,17 +38,17 @@ public class ConfigHandler {
         respawnPersistentFlight = config.getBoolean("flight.persistent.respawn", true);
         gamemodeChangePersistentFlight = config.getBoolean("flight.persistent.gamemode-change", true);
         maxRenameCharacters = config.getInt("rename.max-characters", 50);
-        hatRespectsCurseOfBinding = config.getBoolean("hat.respect-curse-of-binding", true);
+        respectBindingCurse = config.getBoolean("hat.respect-curse-of-binding", true);
         List<String> disabledItems = config.getStringList("hat.disabled-items");
         disabledHatItems.clear();
         if (!disabledItems.isEmpty()) {
-            for (String string : disabledItems) {
-                Material material = Material.getMaterial(string);
-                if (material == null) {
-                    logger.info(string + " is not a valid material, please check your syntax");
+            for (String disabledItem : disabledItems) {
+                Material itemType = Material.getMaterial(disabledItem);
+                if (itemType == null) {
+                    logger.info(disabledItem + " is not a valid material, please check your syntax");
                     continue;
                 }
-                disabledHatItems.add(material);
+                disabledHatItems.add(itemType);
             }
         }
     }
@@ -109,8 +109,8 @@ public class ConfigHandler {
         return maxRenameCharacters;
     }
 
-    public boolean isHatRespectsCurseOfBinding() {
-        return hatRespectsCurseOfBinding;
+    public boolean shouldRespectBindingCurse() {
+        return respectBindingCurse;
     }
 
     public HashSet<Material> getDisabledHatItems(){
