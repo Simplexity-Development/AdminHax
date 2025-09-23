@@ -19,8 +19,8 @@ public class Permissions {
     public static final Permission REPAIR_INVENTORY_OTHER_PERMISSION = new Permission("adminhax.commands.other.repair.inventory");
     public static final Permission REPAIR_ALL_PERMISSION = new Permission("adminhax.commands.repair.all");
     public static final Permission REPAIR_ALL_OTHER_PERMISSION = new Permission("adminhax.commands.other.repair.all");
-    public static final Permission HEAL_PERMISSION = new Permission("adminhax.heal");
-    public static final Permission HEAL_OTHER_PERMISSION = new Permission("adminhax.heal.other");
+    public static final Permission HEAL_PERMISSION = new Permission("adminhax.commands.heal");
+    public static final Permission HEAL_OTHER_PERMISSION = new Permission("adminhax.commands.other.heal");
     public static final Permission FEED_PERMISSION = new Permission("adminhax.commands.feed");
     public static final Permission FEED_OTHER_PERMISSION = new Permission("adminhax.commands.other.feed");
     public static final Permission GODMODE_PERMISSION = new Permission("adminhax.commands.godmode");
